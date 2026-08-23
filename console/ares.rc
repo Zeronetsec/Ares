@@ -1,0 +1,5 @@
+# https://github.com/Zeronetsec/Ares
+
+eval "$(command dircolors --sh)"
+
+# Copyright (c) 2026 Zeronetsec

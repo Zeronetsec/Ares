@@ -1,0 +1,5 @@
+{
+    "Command": "--exec",
+    "Args": "<prog> [<args...>]",
+    "Description": "nanti"
+}

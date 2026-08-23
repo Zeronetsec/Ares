@@ -1,0 +1,11 @@
+bash
+bash-builtins-dev::{bash-builtins,bash}
+perl
+coreutils
+findutils
+zip
+bat
+clang
+gcc::libllvm
+libconfig-dev::libconfig
+fzf
