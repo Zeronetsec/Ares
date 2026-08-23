@@ -32,7 +32,7 @@ int dynav_builtin(WORD_LIST *list) {
         sizeof(base_path) - 1
     );
     base_path[sizeof(base_path) - 1] = '\0';
-    
+
     size_t len = strlen(base_path);
     while (len > 0 && base_path[len - 1] == '/') {
         base_path[len - 1] = '\0';
@@ -44,6 +44,16 @@ int dynav_builtin(WORD_LIST *list) {
         return EXECUTION_SUCCESS;
     }
 
+    const char *ignored_folders[] = {
+        ".git",
+        ".install",
+        ".github",
+        ".vscode",
+        ".laction",
+        ".docs",
+        NULL 
+    };
+
     struct dirent *entry;
     char fullpath[PATH_MAX];
     char var_name[NAME_MAX + 10];
@@ -53,6 +63,23 @@ int dynav_builtin(WORD_LIST *list) {
             strcmp(entry->d_name, ".") == 0 ||
             strcmp(entry->d_name, "..") == 0
         ) {
+            continue;
+        }
+
+        int skip = 0;
+        for (int i = 0; ignored_folders[i] != NULL; i++) {
+            if (
+                strcmp(
+                    entry->d_name,
+                    ignored_folders[i]
+                ) == 0
+            ) {
+                skip = 1;
+                break;
+            }
+        }
+
+        if (skip) {
             continue;
         }
 
@@ -91,7 +118,9 @@ int dynav_builtin(WORD_LIST *list) {
         lower_name[sizeof(lower_name) - 1] = '\0';
         
         for (int i = 0; lower_name[i]; i++) {
-            lower_name[i] = tolower((unsigned char)lower_name[i]);
+            lower_name[i] = tolower(
+                (unsigned char)lower_name[i]
+            );
         }
 
         snprintf(
