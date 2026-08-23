@@ -1,0 +1,5 @@
+.install/** linguist-vendored
+.laction/** linguist-vendored
+
+install.sh linguist-vendored
+uninstall.sh linguist-vendored
