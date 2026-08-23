@@ -4,7 +4,7 @@ function module::Version() {
     local name="Ares"
     local version="v0.1"
     local creator="Zeronetsec"
-    local homepage="https://github.com/Zeronetsec/Chprompt"
+    local homepage="https://github.com/Zeronetsec/Ares"
 
     echo -e "${N}Name: ${GG}${name}${N}"
     echo -e "${N}Version: ${GG}${version}${N}"
