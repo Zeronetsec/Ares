@@ -5,6 +5,7 @@ package main
 import (
     "fmt"
     "os"
+    "github.com/Zeronetsec/Ares/lib/go/color"
 )
 
 func main() {
@@ -15,7 +16,7 @@ func main() {
     input := os.Args[1]
     fmt.Printf(
         "%sAres Shell: command %s%s %snot found!\n",
-        N, GG, input, N,
+        color.N, color.GG, input, color.N,
     )
 
     commands := getCommands()
@@ -33,14 +34,15 @@ func main() {
             suggests[0].Score-suggests[1].Score > 0.20) {
                 fmt.Printf(
                     "%s- %sDid you mean: %s%s%s?\n",
-                    R, N, GG, suggests[0].Command, N,
+                    color.R, color.N, color.GG,
+                    suggests[0].Command, color.N,
                 )
                 os.Exit(1)
             }
 
     fmt.Printf(
         "%s- %sDid you mean:\n",
-        R, N,
+        color.R, color.N,
     )
 
     limit := 3
@@ -51,7 +53,7 @@ func main() {
     for i := 0; i < limit; i++ {
         fmt.Printf(
             "    %s- %s%s%s\n",
-            R, GG, suggests[i].Command, N,
+            color.R, color.GG, suggests[i].Command, color.N,
         )
     }
 

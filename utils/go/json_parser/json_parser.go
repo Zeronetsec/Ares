@@ -6,6 +6,7 @@ import (
     "fmt"
     "os"
     "path/filepath"
+    "github.com/Zeronetsec/Ares/lib/go/color"
 )
 
 func main() {
@@ -13,7 +14,7 @@ func main() {
     if targetMetadata == "" {
         fmt.Printf(
             "%s[!] %sVariable: %s__aresroot__ %snot found!\n",
-            R, N, GG, N,
+            color.R, color.N, color.GG, color.N,
         )
         os.Exit(1)
     }

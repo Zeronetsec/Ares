@@ -6,6 +6,7 @@ import (
     "os"
     "fmt"
     "encoding/json"
+    "github.com/Zeronetsec/Ares/lib/go/color"
 )
 
 func processFile(filePath string) {
@@ -26,22 +27,23 @@ func processFile(filePath string) {
     if data.Args != "" {
         fullcmd = fmt.Sprintf(
             "%s%s %s%s%s",
-            GG, data.Command, CC, data.Args, N,
+            color.GG, data.Command, color.CC, data.Args, color.N,
         )
     } else {
         fullcmd = fmt.Sprintf(
-            "%s%s%s", GG, data.Command, N,
+            "%s%s%s",
+            color.GG, data.Command, color.N,
         )
     }
 
     fmt.Printf(
         "    %s* %s\n",
-        DG, fullcmd,
+        color.DG, fullcmd,
     )
 
     fmt.Printf(
         "    %s└── %s%s%s\n",
-        DG, WW, data.Description, N,
+        color.DG, color.WW, data.Description, color.N,
     )
 }
 
