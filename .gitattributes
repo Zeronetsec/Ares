@@ -1,5 +1,6 @@
 .install/** linguist-vendored
 .laction/** linguist-vendored
+.laction/execute/syntax/** linguist-vendored=false
 
 install.sh linguist-vendored
 uninstall.sh linguist-vendored
