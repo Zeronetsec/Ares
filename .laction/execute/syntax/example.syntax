@@ -1,0 +1,3 @@
+if h = _( #define var "val" )_
+if go, py = _( var = "val" )_
+if sh = _( export var='val'; readonly var )_

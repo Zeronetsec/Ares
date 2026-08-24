@@ -1,3 +1,7 @@
+github.com/Zeronetsec/Ares/lib/go/color v0.0.0-20260823232555-bdc031f292b5 h1:WidXcjPaTaSikpePUfL6KFmUwENNnrquuJfON/I4vPo=
+github.com/Zeronetsec/Ares/lib/go/color v0.0.0-20260823232555-bdc031f292b5/go.mod h1:GvovuublRWlUXnpGLGnSccRXPmQU6B0RADMx6jAvH1o=
+github.com/Zeronetsec/Ares/lib/go/shell v0.0.0-20260823234038-1efa0cad7096 h1:kNJ3hGAqptrIjfXtsutCK6I4XcrtS6XAnZNWyFJqnS8=
+github.com/Zeronetsec/Ares/lib/go/shell v0.0.0-20260823234038-1efa0cad7096/go.mod h1:aFbXpZHrokYmydOCV82uKjRQ8XXwz1yzHXvoM/Xq/iM=
 github.com/atotto/clipboard v0.1.4 h1:EH0zSVneZPSuFR11BlR9YppQTVDbh5+16AmcJi4g1z4=
 github.com/atotto/clipboard v0.1.4/go.mod h1:ZY9tmq7sm5xIbd9bOK4onWV4S6X0u6GY7Vn0Yu86PYI=
 github.com/aymanbagabas/go-osc52/v2 v2.0.1 h1:HwpRHbFMcZLEVr42D4p7XBqjyuxQH5SMiErDT4WkJ2k=

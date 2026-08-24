@@ -6,6 +6,7 @@ import (
     "fmt"
     "os"
     "github.com/charmbracelet/bubbles/textinput"
+    "github.com/Zeronetsec/Ares/lib/go/color"
     tea "github.com/charmbracelet/bubbletea"
 )
 
@@ -15,7 +16,7 @@ func main() {
     if err != nil {
         fmt.Printf(
             "%s[!] %sFailed reading startup config: %s%v%s\n",
-            R, N, GG, err, N,
+            color.R, color.N, color.GG, err, color.N,
         )
         os.Exit(1)
     }
@@ -35,7 +36,7 @@ func main() {
     if _, err := p.Run(); err != nil {
         fmt.Printf(
             "%s[!] %sError TUI: %s%v%s\n",
-                R, N, GG, err, N,
+                color.R, color.N, color.GG, err, color.N,
         )
         os.Exit(1)
     }

@@ -7,6 +7,8 @@ import (
     "strconv"
     "strings"
     "github.com/charmbracelet/bubbles/textinput"
+    "github.com/Zeronetsec/Ares/lib/go/color"
+    "github.com/Zeronetsec/Ares/lib/go/shell"
     tea "github.com/charmbracelet/bubbletea"
 )
 
@@ -69,7 +71,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
                             }
 
                             if !isValid {
-                                m.savedStatus = R + "» " + N + "Failed: " + RR + errorMsg + N
+                                m.savedStatus = color.R + "» " + color.N + "Failed: " + color.RR + errorMsg + color.N
                                 m.editing = false
                                 return m, nil
                             }
@@ -79,14 +81,19 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
                             err := saveCfg(m.configPath, m.items)
                             if err != nil {
-                                m.savedStatus = R + "» " + N + "Failed save config"
+                                m.savedStatus = color.R + "» " + color.N + "Failed save config"
                             } else {
-                                m.savedStatus = GG + "» " + N + "Config saved"
+                                m.savedStatus = color.GG + "» " + color.N + "Config saved"
                                 logMessage := fmt.Sprintf(
                                     "\"[*] Change %s => %s\"",
                                     keyChanged, newValue,
                                 )
-                                execShell("mklog", "chstartup", ":info", logMessage)
+                                shell.Execute(
+                                    "mklog",
+                                    "chstartup",
+                                    ":info",
+                                    logMessage,
+                                )
                             }
                         } else {
                             m.editing = true
