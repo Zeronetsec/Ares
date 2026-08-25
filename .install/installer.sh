@@ -1,6 +1,5 @@
 function install::installer() {
     install::extern::libsoCCompile
-    install::extern::libsoShellCCompile
 
     install::extern::utilsGoCompile
 

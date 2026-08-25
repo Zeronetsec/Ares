@@ -1,4 +1,4 @@
-// httpa://github.com/Zeronetsec/Ares
+// https://github.com/Zeronetsec/Ares
 
 package main
 

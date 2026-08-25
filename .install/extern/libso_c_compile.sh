@@ -23,9 +23,9 @@ function install::extern::libsoCCompile() {
 
         [[ "${ext,,}" != 'c' ]] && continue
 
-        echo -e "${B}[*] ${N}Compile: ${GG}${libname}.so ${DG}(${WW}lang: ${GG}c ${DG}| ${WW}type: ${BB}libso${DG})${N}"
-        #install::getinstall \
-        #    "
+        #echo -e "${B}[*] ${N}Compile: ${GG}${libname}.so ${DG}(${WW}lang: ${GG}c ${DG}| ${WW}type: ${BB}libso${DG})${N}"
+        install::getinstall \
+            "
                 command gcc \
                     -fPIC -shared -O3 -march=native \
                     -s ${opt}/${targetins}/utils/libso/${libname}.c \
@@ -34,12 +34,12 @@ function install::extern::libsoCCompile() {
                     -I${prefix}/include/bash/include \
                     -I${prefix}/include/bash/builtins \
                     -I${opt}/${targetins}/lib/c
-        #    " \
-        #    "Compiling: ${GG}${libname}.so${N}"
+            " \
+            "Compiling: ${GG}${libname}.so ${DG}(${WW}lang: ${GG}c${DG}, ${WW}type: ${BB}libso${DG})${N}"
 
         command ln -sf \
-            ${opt}/${targetins}/utils/libso/${libname}.so \
-            ${opt}/${targetins}/lib/shell/libso/${libname}.so
+            "${opt}/${targetins}/utils/libso/${libname}.so" \
+            "${opt}/${targetins}/lib/shell/libso/${libname}.so"
 
         command rm -rf \
             "${opt}/${targetins}/utils/libso/${libname}.c"

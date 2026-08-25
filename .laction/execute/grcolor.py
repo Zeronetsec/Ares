@@ -11,6 +11,8 @@ target_list = [
     project_root / "utils" / "color.sh",
     project_root / "lib" / "c" / "color.h",
     project_root / "lib" / "go" / "color" / "color.go",
+    project_root / "lib" / "python" / "color.py",
+    project_root / "config" / "acon" / "acon.syntax",
 ]
 
 def load_color_sc(sc_path: Path) -> dict:
@@ -42,7 +44,7 @@ def load_syntax_rules(syntax_path: Path) -> dict:
                 continue
 
             match = re.match(
-                r"if\s+(.*?)\s*=\s*_\((.*?)\)_",
+                r"if\s+(.*?)\s*=\s*_\((.*)\)_",
                 line,
             )
 

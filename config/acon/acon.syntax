@@ -1,0 +1,21 @@
+// https://github.com/Zeronetsec/Ares
+
+if color.N = _( \x1b[0m )_
+if color.R = _( \x1b[1;31m )_
+if color.G = _( \x1b[1;32m )_
+if color.Y = _( \x1b[1;33m )_
+if color.B = _( \x1b[1;34m )_
+if color.P = _( \x1b[1;35m )_
+if color.C = _( \x1b[1;36m )_
+if color.W = _( \x1b[1;37m )_
+if color.RR = _( \x1b[0;31m )_
+if color.GG = _( \x1b[0;32m )_
+if color.YY = _( \x1b[0;33m )_
+if color.BB = _( \x1b[0;34m )_
+if color.PP = _( \x1b[0;35m )_
+if color.CC = _( \x1b[0;36m )_
+if color.WW = _( \x1b[0;37m )_
+if color.DG = _( \x1b[1;90m )_
+if color.RO = _( \x1b[38;5;202m )_
+
+// Copyright (c) 2026 Zeronetsec

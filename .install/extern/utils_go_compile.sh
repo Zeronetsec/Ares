@@ -9,15 +9,19 @@ function install::extern::utilsGoCompile() {
             command basename "${ugo}"
         )"
 
-        echo -e "${B}[*] ${N}Compile: ${GG}${utils_name} ${DG}(${WW}lang: ${GG}go ${DG}| ${WW}type: ${YY}utils${DG})${N}"
+        #echo -e "${B}[*] ${N}Compile: ${GG}${utils_name} ${DG}(${WW}lang: ${GG}go ${DG}| ${WW}type: ${YY}utils${DG})${N}"
 
         local temp_bin="${base_dir}/.${utils_name}.tmp"
         local final_bin="${base_dir}/${utils_name}"
 
         (
             cd "${ugo}"
-            command go mod tidy
-            command go build -o "${temp_bin}" .
+            install::getinstall \
+                "
+                    command go mod tidy
+                    command go build -o ${temp_bin} .
+                " \
+                "Compiling: ${GG}${utils_name} ${DG}(${WW}lang: ${GG}go${DG}, ${WW}type: ${YY}utils${DG})${N}"
         )
 
         if [[ -f "${temp_bin}" ]]; then

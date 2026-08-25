@@ -38,7 +38,6 @@ include : '(
     .install/postins
     .install/symlink
     .install/extern/color
-    .install/extern/libso_shell_c_compile
     .install/extern/libso_c_compile
     .install/extern/utils_go_compile
     .install/extern/bin_c_compile

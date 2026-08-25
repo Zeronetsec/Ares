@@ -1,4 +1,4 @@
-# https://github.com/Zeronetsec/Chprompt
+# https://github.com/Zeronetsec/Ares
 
 function module::Uwu() {
     local engine="${__aresroot__}/utils/go/nyanners"

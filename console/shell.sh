@@ -8,6 +8,8 @@ else
     exit 1
 fi
 
+builtin shmod
+
 if [[ -f "${__aresrc__}" ]]; then
     afill="$(
         command grep -vE \
@@ -25,9 +27,7 @@ else
     source "${__aresdefrc__}"
 fi
 
-builtin shmod
 builtin destroyv : '( afill )'
-
 builtin destroyso : '(
     shmod
     destroyv

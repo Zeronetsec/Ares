@@ -1,3 +1,4 @@
 if h = _( #define var "val" )_
 if go, py = _( var = "val" )_
 if sh = _( export var='val'; readonly var )_
+if syntax = _( if color.var = _( val )_ )_

@@ -1,4 +1,6 @@
-// httpe://github.com/Zeronetsec/Ares
+// https://github.com/Zeronetsec/Ares
+
+// Usage: mklog <toolname> <tag> <msg...>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -56,9 +58,10 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    const char *aresLogDir = getenv(
-        "areslog"
-    ) ? getenv("areslog") : "";
+    const char *aresLogDir = getenv("__areslog__");
+    if (!aresLogDir) {
+        aresLogDir = "";
+    }
 
     char baseDir[1024];
     snprintf(
