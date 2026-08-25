@@ -24,6 +24,9 @@ builtin include : '(
     utils/color
 )'
 
+: 'hit cnf_handler'
+command chhmi > /dev/null 2>&1 || true
+
 stconf="${__config__}/startup.conf"
 if [[ "$(command getconf "${stconf}" --key 'chmod' --get 1)" == true ]]; then
     command fchmod "${__bin__}" \
