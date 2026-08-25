@@ -1,7 +1,8 @@
 # https://github.com/Zeronetsec/Ares
 
 function module::Shell() {
-    exec -a 'Ares Shell' \
+    export SHELL="${0}"; readonly SHELL
+    exec -a 'Ares Framework Console' \
         bash --rcfile \
         "${__aresroot__}/console/shell.sh" -i
 }; readonly -f module::Shell

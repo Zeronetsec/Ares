@@ -6,7 +6,8 @@ function module::Exec() {
         return 1
     fi
 
-    exec -a 'Ares Shell' \
+    export SHELL="${0}"; readonly SHELL
+    exec -a 'Ares Framework Console' \
         bash --rcfile \
         "${__aresroot__}/console/shell.sh" -i -c "${@}"
 }; readonly -f module::Exec

@@ -1,9 +1,5 @@
 # https://github.com/Zeronetsec/Ares
 
-set -o errexit
-
-readonly __aresroot__
-enable -f "${__aresroot__}/utils/libso/loadso.so" loadso
 builtin loadso : '(
     lib/shell/libso/destroyf -> destroyf
     lib/shell/libso/destroyso -> destroyso
@@ -17,31 +13,41 @@ builtin loadso : '(
     lib/shell/libso/catchypr -> catchypr
     lib/shell/libso/unreadonlyf -> unreadonlyf
     lib/shell/libso/unreadonlyv -> unreadonlyv
+    lib/shell/libso/errptr -> errptr
 )'
+
+trap 'builtin errptr' ERR
 
 builtin include : '(
     utils/variable
     utils/color
 )'
 
-: 'hit cnf_handler'
-command chhmi > /dev/null 2>&1 || true
-
 stconf="${__config__}/startup.conf"
-if [[ "$(command getconf "${stconf}" --key 'chmod' --get 1)" == true ]]; then
+if [[
+    "$(
+        command getconf "${stconf}" \
+            --key 'chmod' \
+            --get 1
+    )" == true
+]]; then
     command fchmod "${__bin__}" \
         --mode 0755 \
         --only file > /dev/null 2>&1
 fi
 
-if [[ "$(command getconf "${stconf}" --key 'remove_log' --get 1)" == true ]]; then
+if [[
+    "$(
+        command getconf "${stconf}" \
+            --key 'remove_log' \
+            --get 1
+    )" == true
+]]; then
     command rm -rf "${HOME}/.ares_log"
     command mkdir -p "${HOME}/.ares_log"
 fi
 
 builtin destroyv : '(
-    src
-    dir
     stconf
 )'
 
@@ -52,9 +58,8 @@ builtin destroyso : '(
     dynav
     dynap
     unreadonlyf
+    unreadonlyv
 )'
-
-set +o errexit
 
 : '<- console/shell.sh'
 

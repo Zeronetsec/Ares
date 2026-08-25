@@ -15,7 +15,7 @@ func main() {
 
     input := os.Args[1]
     fmt.Printf(
-        "%sAres Shell: command %s%s %snot found!\n",
+        "%sAres Framework Console: command %s%s %snot found!\n",
         color.N, color.GG, input, color.N,
     )
 

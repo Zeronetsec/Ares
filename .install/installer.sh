@@ -20,9 +20,9 @@ function install::installer() {
             "Create file: ${GG}${HOME}/.aresrc${N}"
     fi
 
-    if [[ ! -d "${HOME}/.ares/shell/module" ]]; then
+    if [[ ! -d "${HOME}/.ares/init/shmod" ]]; then
         install::getinstall \
-            "command mkdir -p ${HOME}/.ares/shell/module" \
-            "Create directory: ${GG}${HOME}/.ares/shell/module${N}"
+            "command mkdir -p ${HOME}/.ares/init/shmod" \
+            "Create directory: ${GG}${HOME}/.ares/init/shmod${N}"
     fi
 }; readonly -f install::installer

@@ -85,7 +85,7 @@ func main() {
 
         varFile := filepath.Join(
             cacheDir, fmt.Sprintf(
-                "%s_ghostvar.go",
+                "%s_ghostCode.go",
                 pathHash,
             ),
         )
@@ -99,10 +99,10 @@ func main() {
         }
 
         if err := os.WriteFile(
-            varFile, []byte(ghostVar), 0644,
+            varFile, []byte(ghostCode), 0644,
         ); err != nil {
             fmt.Printf(
-                "%s[!] %sFailed loading ghostvar.go: %s%v%s\n",
+                "%s[!] %sFailed loading ghostCode.go: %s%v%s\n",
                 color.R, color.N, color.GG, err, color.N,
             )
             os.Exit(1)

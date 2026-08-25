@@ -2,7 +2,7 @@
 
 package main
 
-const ghostVar = `
+const ghostCode = `
 package main
 `
 

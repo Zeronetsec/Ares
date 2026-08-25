@@ -42,6 +42,57 @@ int is_valid_sh(const char *filepath) {
     return 0;
 }
 
+int has_valid_sh_files(const char *dir_path) {
+    DIR *dir = opendir(dir_path);
+    if (!dir) return 0;
+
+    struct dirent *entry;
+    char path[4096];
+    int found_valid = 0;
+
+    while ((entry = readdir(dir)) != NULL) {
+        if (
+            strcmp(entry->d_name, ".") == 0 ||
+            strcmp(entry->d_name, "..") == 0
+        ) {
+            continue;
+        }
+
+        snprintf(
+            path,
+            sizeof(path),
+            "%s/%s",
+            dir_path,
+            entry->d_name
+        );
+
+        struct stat statbuf;
+        if (stat(path, &statbuf) == -1) {
+            continue;
+        }
+
+        if (S_ISDIR(statbuf.st_mode)) {
+            if (has_valid_sh_files(path)) {
+                found_valid = 1;
+                break;
+            }
+        } else if (S_ISREG(statbuf.st_mode)) {
+            size_t len = strlen(entry->d_name);
+            if (
+                len > 3 &&
+                strcmp(entry->d_name + len - 3, ".sh") == 0
+            ) {
+                if (is_valid_sh(path)) {
+                    found_valid = 1;
+                    break;
+                }
+            }
+        }
+    }
+    closedir(dir);
+    return found_valid;
+}
+
 void scan_and_source(const char *dir_path) {
     DIR *dir = opendir(dir_path);
     if (!dir) return;
@@ -88,25 +139,39 @@ void scan_and_source(const char *dir_path) {
 }
 
 int shmod_builtin(WORD_LIST *list) {
-    char *init = get_string_value("__init__");
-    if (!init) {
-        fprintf(
-            stderr,
-            "%s[!] %sShmod: %s__init__ %snot found!\n",
-            R, N, GG, N
-        );
-        return EXECUTION_FAILURE;
+    int using_user_shmod = 0;
+
+    char *shmoduser = get_string_value("__shmoduser__");
+    if (
+        shmoduser != NULL &&
+        has_valid_sh_files(shmoduser)
+    ) {
+        scan_and_source(shmoduser);
+        using_user_shmod = 1;
     }
 
-    char target_dir[4096];
-    snprintf(
-        target_dir,
-        sizeof(target_dir),
-        "%s/shmod",
-        init
-    );
+    if (!using_user_shmod) {
+        char *init = get_string_value("__init__");
+        if (!init) {
+            fprintf(
+                stderr,
+                "%s[!] %sShmod: %s__init__ %snot found!\n",
+                R, N, GG, N
+            );
+            return EXECUTION_FAILURE;
+        }
 
-    scan_and_source(target_dir);
+        char target_dir[4096];
+        snprintf(
+            target_dir,
+            sizeof(target_dir),
+            "%s/shmod",
+            init
+        );
+
+        scan_and_source(target_dir);
+    }
+
     return EXECUTION_SUCCESS;
 }
 
