@@ -1,17 +1,22 @@
 # https://github.com/Zeronetsec/Ares
 
+set -o errexit
+
+readonly __aresroot__
 enable -f "${__aresroot__}/utils/libso/loadso.so" loadso
 builtin loadso : '(
-    utils/libso/include -> include
-    utils/libso/destroyf -> destroyf
-    utils/libso/destroyv -> destroyv
-    utils/libso/destroyso -> destroyso
-    utils/libso/rhome -> rhome
-    utils/libso/dynav -> dynav
-    utils/libso/dynap -> dynap
-    utils/libso/shmod -> shmod
-    utils/libso/unreadonlyf -> unreadonlyf
-    utils/libso/catchypr -> catchypr
+    lib/shell/libso/destroyf -> destroyf
+    lib/shell/libso/destroyso -> destroyso
+    lib/shell/libso/destroyv -> destroyv
+    lib/shell/libso/include -> include
+    lib/shell/libso/loadso -> loadso
+    lib/shell/libso/rhome -> rhome
+    lib/shell/libso/dynav -> dynav
+    lib/shell/libso/dynap -> dynap
+    lib/shell/libso/shmod -> shmod
+    lib/shell/libso/catchypr -> catchypr
+    lib/shell/libso/unreadonlyf -> unreadonlyf
+    lib/shell/libso/unreadonlyv -> unreadonlyv
 )'
 
 builtin include : '(
@@ -45,6 +50,8 @@ builtin destroyso : '(
     dynap
     unreadonlyf
 )'
+
+set +o errexit
 
 : '<- console/shell.sh'
 

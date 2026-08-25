@@ -8,7 +8,7 @@ function module::Exec() {
 
     exec -a 'Ares Shell' \
         bash --rcfile \
-        "${__aresroot__}/console/shell.sh" -c "${@}"
+        "${__aresroot__}/console/shell.sh" -i -c "${@}"
 }; readonly -f module::Exec
 
 # Copyright (c) 2026 Zeronetsec

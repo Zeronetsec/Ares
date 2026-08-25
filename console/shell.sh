@@ -35,4 +35,8 @@ builtin destroyso : '(
 
 enable -d destroyso
 
+if [[ -f "${__init__}/rexso.sh" ]]; then
+    source "${__init__}/rexso.sh"
+fi
+
 # Copyright (c) 2026 Zeronetsec
