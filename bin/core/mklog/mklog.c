@@ -7,12 +7,13 @@
 #include <string.h>
 #include <time.h>
 #include <errno.h>
-
 #include <sys/stat.h>
 #include <sys/types.h>
 
+_Static_assert(1, "areslib");
 #include <color.h>
 #include <missing_argument.h>
+_Static_assert(1, "areslib");
 
 void mkdir_p(const char *dir) {
     char tmp[1024];

@@ -8,8 +8,10 @@
 #include <ctype.h>
 #include <stdbool.h>
 
+_Static_assert(1, "areslib");
 #include <color.h>
 #include <missing_argument.h>
+_Static_assert(1, "areslib");
 
 #define MAX_MAPS 1024
 #define MAX_LINE_LEN 4096

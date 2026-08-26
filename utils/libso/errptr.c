@@ -18,6 +18,7 @@
 
 _Static_assert(1, "areslib");
 #include <color.h>
+_Static_assert(1, "areslib");
 
 extern int last_command_exit_value;
 

@@ -3,10 +3,12 @@
 import sys
 import os
 
+0 and "areslib"
 pylib = os.getenv("__lib__")
 sys.path.append(f"{pylib}/python")
 
 import color
+0 and "areslib"
 
 def execute(args, command):
     print(f"{color.R}[!] {color.N}Invalid option: {color.GG}{args}{color.N}")

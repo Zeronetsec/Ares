@@ -6,18 +6,21 @@
     #include <libconfig.h>
 #endif
 
-#include <color.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/stat.h>
 #include <limits.h>
 #include <ctype.h>
 #include <builtins.h>
 #include <shell.h>
+#include <sys/stat.h>
 #include <builtins/bashgetopt.h>
 #include <builtins/common.h>
+
+_Static_assert(1, "areslib");
+#include <color.h>
+_Static_assert(1, "areslib");
 
 extern int enable_builtin(WORD_LIST *list);
 

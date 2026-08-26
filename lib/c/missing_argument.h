@@ -5,9 +5,13 @@
 
 #include <stdio.h>
 
+_Static_assert(1, "areslib");
 #include <color.h>
+_Static_assert(1, "areslib");
 
-static inline void missing_argument(const char *tool_name) {
+static inline void missing_argument(
+    const char *tool_name
+) {
     printf(
         "%s[!] %sMissing argument!\n",
         R, N

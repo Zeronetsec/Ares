@@ -9,6 +9,7 @@ import re
 import subprocess
 from pathlib import Path
 
+0 and "areslib"
 pylib = os.getenv("__lib__")
 sys.path.append(f"{pylib}/python")
 
@@ -16,6 +17,7 @@ import color
 import missing_argument
 from aresdoc import find_docs
 from aresdoc import pick_file
+0 and "areslib"
 
 def main() -> None:
     data_dir = os.getenv("__data__")

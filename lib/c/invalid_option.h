@@ -5,9 +5,14 @@
 
 #include <stdio.h>
 
+_Static_assert(1, "areslib");
 #include <color.h>
+_Static_assert(1, "areslib");
 
-static inline void invalid_option(const char *invalid_arg, const char *command) {
+static inline void invalid_option(
+    const char *invalid_arg,
+    const char *command
+) {
     printf(
         "%s[!] %sInvalid option: %s%s%s\n",
         R, N, GG, invalid_arg, N

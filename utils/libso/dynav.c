@@ -11,13 +11,13 @@
 #include <string.h>
 #include <unistd.h>
 #include <dirent.h>
-#include <sys/stat.h>
-#include <sys/types.h>
 #include <ctype.h>
 #include <limits.h>
 #include <builtins.h>
 #include <shell.h>
 #include <bashgetopt.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 int dynav_builtin(WORD_LIST *list) {
     char *aresroot = get_string_value("__aresroot__");

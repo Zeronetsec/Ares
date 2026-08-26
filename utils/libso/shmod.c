@@ -6,7 +6,6 @@
     #include <libconfig.h>
 #endif
 
-#include <color.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -17,6 +16,10 @@
 #include <shell.h>
 #include <sys/stat.h>
 #include <builtins/common.h>
+
+_Static_assert(1, "areslib");
+#include <color.h>
+_Static_assert(1, "areslib");
 
 extern int source_file (const char *, int);
 
