@@ -22,30 +22,6 @@ else
     exit 1
 fi
 
-builtin shmod
-builtin loadrc
-
-builtin destroyv : '(
-    src
-    dir
-    __aresloader__
-    __aresdefrc__
-    afill
-)'
-
-builtin llsi
-
-builtin destroyso : '(
-    shmod
-    destroyv
-    error
-    loadso
-    llsi
-    loadrc
-)'
-
-enable -d destroyso
-
 set +o errexit
 trap - ERR
 

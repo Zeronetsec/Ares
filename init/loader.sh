@@ -18,8 +18,6 @@ builtin loadso : '(
     lib/shell/libso/loadrc -> loadrc
 )'
 
-trap 'builtin error' ERR
-
 builtin include : '(
     utils/variable
     utils/color
@@ -49,7 +47,15 @@ if [[
     command mkdir -p "${HOME}/.ares_log"
 fi
 
+builtin shmod
+builtin loadrc
+builtin llsi
+
 builtin destroyv : '(
+    src
+    dir
+    __aresloader__
+    __aresdefrc__
     stconf
 )'
 
@@ -61,7 +67,15 @@ builtin destroyso : '(
     dynap
     unreadonlyf
     unreadonlyv
+    shmod
+    destroyv
+    error
+    loadso
+    llsi
+    loadrc
 )'
+
+enable -d destroyso
 
 : '<- console/shell.sh'
 
