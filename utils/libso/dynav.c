@@ -52,7 +52,7 @@ int dynav_builtin(WORD_LIST *list) {
         ".laction",
         ".docs",
         ".privdat",
-        ".devfase",
+        ".devphase",
         NULL 
     };
 
