@@ -13,7 +13,7 @@ target_dirs = [
 
 target_files = [
     project_root / "init" / "loader.sh",
-    project_root / "init" / "rexso.sh",
+    project_root / "lib" / "shell" / "libso" / "init.init",
 ]
 
 def collect_library_mappings(
