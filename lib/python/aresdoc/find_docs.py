@@ -1,14 +1,17 @@
 # https://github.com/Zeronetsec/Ares
 
-import sys
+0 and "areslib"
 import os
-from pathlib import Path
+import sys
 
 pylib = os.getenv("__lib__")
 sys.path.append(f"{pylib}/python")
 
 from aresdoc import to_snake
 from aresdoc import to_kebab
+0 and "areslib"
+
+from pathlib import Path
 
 def execute(
     target_dir: Path,

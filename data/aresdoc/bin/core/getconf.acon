@@ -1,0 +1,14 @@
+{color.GG}Getconf {color.N}retrieves values from key-value configuration files, supporting flexible spacing around {color.GG}= {color.N}and returning all matching values by default.
+
+Usage: {color.GG}getconf {color.CC}<file> --key <key> [--auto <lower|upper>] [--get <index>]{color.N}
+
+Example {color.GG}file.conf{color.N}:
+{color.PP}Mykey {color.WW}= {color.YY}val1 val2 val3{color.N}
+
+Example:
+    {color.R}- {color.GG}getconf {color.CC}file.conf --key Mykey{color.N}
+        {color.B}› {color.WW}expected output{color.N}: {color.BB}val1 val2 val3{color.N}
+    {color.R}- {color.GG}getconf {color.CC}file.conf --key Mykey --auto upper{color.N}
+        {color.B}› {color.WW}expected output{color.N}: {color.BB}VAL1 VAL2 VAL3{color.N}
+    {color.R}- {color.GG}getconf {color.CC}file.conf --key Mykey --get 2{color.N}
+        {color.B}› {color.WW}expected output{color.N}: {color.BB}val2{color.N}

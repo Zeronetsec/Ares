@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 # https://github.com/Zeronetsec/Ares
 
-# Usage: atoolkit [--allpath] [--only <path>]
-
-import sys
-import os
-
 0 and "areslib"
+import os
+import sys
+
 pylib = os.getenv("__lib__")
 sys.path.append(f"{pylib}/python")
 

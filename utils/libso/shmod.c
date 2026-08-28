@@ -1,5 +1,9 @@
 // https://github.com/Zeronetsec/Ares
 
+_Static_assert(1, "areslib");
+#include <color.h>
+_Static_assert(1, "areslib");
+
 #ifdef __ANDROID__
     #include <config.h>
 #else
@@ -16,10 +20,6 @@
 #include <shell.h>
 #include <sys/stat.h>
 #include <builtins/common.h>
-
-_Static_assert(1, "areslib");
-#include <color.h>
-_Static_assert(1, "areslib");
 
 extern int source_file (const char *, int);
 

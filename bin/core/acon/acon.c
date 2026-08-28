@@ -1,17 +1,15 @@
 // https://github.com/Zeronetsec/Ares
 
-// Usage: acon file.acon [--map file.syntax] [--raw <escape|full>]
+_Static_assert(1, "areslib");
+#include <color.h>
+#include <missing_argument.h>
+_Static_assert(1, "areslib");
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
-
-_Static_assert(1, "areslib");
-#include <color.h>
-#include <missing_argument.h>
-_Static_assert(1, "areslib");
 
 #define MAX_MAPS 1024
 #define MAX_LINE_LEN 4096

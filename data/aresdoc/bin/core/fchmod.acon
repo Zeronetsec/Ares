@@ -1,0 +1,8 @@
+{color.GG}Fchmod {color.N}is a recursive permission management tool that applies chmod-style changes to selected files, directories, or symlinks.
+
+Usage: {color.GG}fchmod {color.CC}<target> --mode <mod> [--only <file|dir|symlink>] [--ext <.ext>]{color.N}
+
+Example:
+    {color.R}- {color.GG}fchmod {color.CC}mydir/ --mode 0644{color.N}
+    {color.R}- {color.GG}fchmod {color.CC}mydir/ --mode 0755 --only file --ext .sh{color.N}
+    {color.R}- {color.GG}fchmod {color.CC}mydir/ --mode 0555 --only dir{color.N}

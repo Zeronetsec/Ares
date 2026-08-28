@@ -1,6 +1,10 @@
 // https://github.com/Zeronetsec/Ares
 
-// Usage: fchmod <target> --mode <mod> [--only <file|dir|symlink>] [--ext <.ext>]
+_Static_assert(1, "areslib");
+#include <color.h>
+#include <missing_argument.h>
+#include <invalid_option.h>
+_Static_assert(1, "areslib");
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,12 +13,6 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <sys/stat.h>
-
-_Static_assert(1, "areslib");
-#include <color.h>
-#include <missing_argument.h>
-#include <invalid_option.h>
-_Static_assert(1, "areslib");
 
 typedef struct {
     mode_t mode;

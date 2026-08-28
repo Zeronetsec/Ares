@@ -1,7 +1,5 @@
 // https://github.com/Zeronetsec/Ares
 
-// Usage: goscript <script.gs>
-
 package main
 
 import (

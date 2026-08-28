@@ -1,0 +1,8 @@
+{color.GG}AToolkit {color.N}lists available commands grouped by their source directories, making it easier to discover and navigate installed tools.
+
+Usage: {color.GG}atoolkit {color.CC}[--alpath] [--only <path>]{color.N}
+
+Example:
+    {color.R}- {color.GG}atoolkit{color.N}
+    {color.R}- {color.GG}atoolkit {color.CC}--only ares/bin/core{color.N}
+    {color.R}- {color.GG}atoolkit {color.CC}--allpath --only ares/bin/core{color.N}

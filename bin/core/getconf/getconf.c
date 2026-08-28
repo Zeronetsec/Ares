@@ -1,16 +1,14 @@
 // https://github.com/Zeronetsec/Ares
 
-// Usage: getconf <file> --key <key> [--auto <lower|upper>] [--get <index>]
+_Static_assert(1, "areslib");
+#include <color.h>
+#include <missing_argument.h>
+_Static_assert(1, "areslib");
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
-_Static_assert(1, "areslib");
-#include <color.h>
-#include <missing_argument.h>
-_Static_assert(1, "areslib");
 
 char *trim_space(char *str) {
     char *end;

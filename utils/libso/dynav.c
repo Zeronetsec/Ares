@@ -51,6 +51,8 @@ int dynav_builtin(WORD_LIST *list) {
         ".vscode",
         ".laction",
         ".docs",
+        ".privdat",
+        ".devfase",
         NULL 
     };
 

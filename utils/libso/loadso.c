@@ -1,5 +1,9 @@
 // https://github.com/Zeronetsec/Ares
 
+_Static_assert(1, "areslib");
+#include <color.h>
+_Static_assert(1, "areslib");
+
 #ifdef __ANDROID__
     #include <config.h>
 #else
@@ -17,10 +21,6 @@
 #include <sys/stat.h>
 #include <builtins/bashgetopt.h>
 #include <builtins/common.h>
-
-_Static_assert(1, "areslib");
-#include <color.h>
-_Static_assert(1, "areslib");
 
 extern int enable_builtin(WORD_LIST *list);
 

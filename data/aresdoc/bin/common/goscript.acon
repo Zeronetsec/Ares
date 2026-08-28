@@ -1,0 +1,24 @@
+{color.GG}GoScript {color.N}executes single-file {color.GG}.gs {color.N}scripts at native Go speed.
+It automatically caches the compiled binary on the first run, re-compiling only when source code changes, and supports external packages without {color.GG}go.mod {color.N}or {color.GG}go.sum{color.N}.
+
+Usage: {color.GG}goscript {color.CC}<script.gs>{color.N}
+
+Example {color.GG}hello.gs{color.N}:
+{color.DG}#!/usr/bin/env goscript{color.N}
+{color.DG}// optional package main{color.N}
+{color.DG}// package main{color.N}
+
+{color.PP}import {color.N}(
+    {color.YY}"fmt"{color.N}
+    {color.YY}"github.com/Zeronetsec/Ares/lib/go/color"{color.N}
+)
+
+{color.PP}func {color.BB}main{color.N}() {
+    fmt.{color.BB}Printf{color.N}(
+        {color.YY}"%sHello World!%s{color.RO}\n{color.YY}"{color.N},
+        color.B, color.N,
+    )
+}
+
+and run: {color.GG}goscript {color.CC}hello.gs{color.N}
+or: {color.GG}chmod {color.CC}+x hello.gs {color.GG}&& {color.N}./hello.gs

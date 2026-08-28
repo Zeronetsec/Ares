@@ -1,0 +1,29 @@
+{color.GG}Mklog {color.N}is a simple logging utility for automatically recording tool activity and messages to the {color.GG}Ares Framework {color.N}log directory.
+
+Usage: {color.GG}mklog {color.CC}<toolname> <tag> <msg...>{color.N}
+
+Available tags:
+    {color.R}- {color.GG}: {color.N}= {color.YY}[+]{color.N}
+    {color.R}- {color.GG}:error {color.N}= {color.YY}[!]{color.N}
+    {color.R}- {color.GG}:info {color.N}= {color.YY}[*]{color.N}
+    {color.R}- {color.GG}:? {color.N}= {color.YY}[?]{color.N}
+    {color.R}- {color.GG}:- {color.N}= {color.YY}[-]{color.N}
+    {color.R}- {color.GG}<other/insupport> {color.N}= {color.YY}[ ]{color.N}
+
+Example:
+    {color.R}- {color.GG}mklog {color.CC}fchmod :error "undefined error!"{color.N}
+
+Example within the script:
+    {color.R}content{color.GG}={color.YY}"{color.R}${color.N}(
+        {color.BB}command {color.N}cat file.txt {color.GG}| {color.RO}\{color.N}
+        {color.BB}command {color.N}grep {color.YY}'mytarget' {color.GG}| {color.RO}\{color.N}
+        {color.RO}2{color.GG}>{color.N}/dev/null
+    ){color.YY}"{color.N}
+
+    {color.PP}if {color.N}[[ {color.GG}-{color.N}z {color.YY}"{color.R}${content}{color.YY}" {color.N}]]; {color.PP}then
+        {color.BB}echo {color.GG}-{color.N}e {color.YY}"[!] File: file.txt empty content!"{color.N}
+        {color.BB}command {color.N}mklog {color.YY}'myscript' {color.N}:error {color.YY}"File: file.txt empty content!"{color.N}
+    {color.PP}fi{color.N}
+
+will be saved to: {color.GG}~/.ares_log/myscript_{color.DG}<date>{color.GG}.log{color.N}
+with the content: {color.DG}<date> {color.GG}- [!] File: file.txt empty content!{color.N}

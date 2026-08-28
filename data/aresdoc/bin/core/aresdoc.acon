@@ -1,0 +1,17 @@
+{color.GG}AresDoc {color.N}is the built-in documentation viewer for {color.GG}Ares Framework{color.N}.
+It provides quick access to command references, usage guides, and examples directly from the terminal.
+
+Usage: {color.GG}aresdoc {color.CC}<tool> [--raw]{color.N}
+
+Names are accepted in {color.BB}camelCase{color.N}, {color.BB}snake_case{color.N}, or {color.BB}PascalCase{color.N}.
+
+Supported inputs:
+    {color.R}- {color.GG}toolname{color.N}
+    {color.R}- {color.GG}ToolName{color.N}
+    {color.R}- {color.GG}tool_name{color.N}
+    {color.R}- {color.GG}path/toolname{color.N}
+    {color.R}- {color.GG}path/ToolName{color.N}
+    {color.R}- {color.GG}path/tool_name{color.N}
+    {color.R}- {color.GG}path::toolname{color.N}
+    {color.R}- {color.GG}path::ToolName{color.N}
+    {color.R}- {color.GG}path::tool_name{color.N}

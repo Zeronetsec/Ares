@@ -3,11 +3,11 @@
 #ifndef INVALID_OPTION_H
 #define INVALID_OPTION_H
 
-#include <stdio.h>
-
 _Static_assert(1, "areslib");
 #include <color.h>
 _Static_assert(1, "areslib");
+
+#include <stdio.h>
 
 static inline void invalid_option(
     const char *invalid_arg,

@@ -1,0 +1,25 @@
+{color.GG}ACON {color.N}is a layout and syntax highlighting engine for the {color.GG}Ares Framework{color.N}.
+It parses {color.GG}.acon {color.N}and {color.GG}.syntax {color.N}files to render formatted, color-coded text directly in the terminal.
+
+Usage: {color.GG}acon {color.CC}file.acon [--map file.syntax] [--raw <escape|full>]{color.N}
+
+Example {color.GG}file.acon{color.N}:
+{color.DG}// comment{color.N}
+{yourmap}Hello World!{othermap}
+
+Example {color.GG}file.syntax{color.N}:
+{color.PP}if {color.N}yourmap, yourmap.v2 {color.GG}= {color.N}_( {color.GG}\x1b[1;34m {color.N})_
+{color.PP}if {color.N}othermap {color.GG}= {color.N}_( {color.GG}\x1b[0m {color.N})_
+
+and run with: {color.GG}acon {color.CC}file.acon --map file.syntax{color.N}
+
+{color.YY}The Hacky Trick{color.N}:
+{color.GG}file.py{color.N}:
+mymap {color.GG}= {color.YY}"Hello World!"{color.N}
+{color.PP}print{color.N}(f{color.YY}"{color.N}{maymap}{color.YY}"{color.N})
+
+{color.GG}file.syntax{color.N}:
+{color.PP}if {color.N}mymap {color.GG}= {color.N}_( {color.GG}Myname! {color.N})_
+
+and run with: {color.GG}acon {color.CC}file.py --map file.syntax{color.N}
+compare with: {color.GG}python3 {color.CC}file.py

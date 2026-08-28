@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
 # https://github.com/Zeronetsec/Ares
 
-# Usage: aresdoc <tool> [--raw]
-
-import sys
-import os
-import re
-import subprocess
-from pathlib import Path
-
 0 and "areslib"
+import os
+import sys
+
 pylib = os.getenv("__lib__")
 sys.path.append(f"{pylib}/python")
 
@@ -18,6 +13,10 @@ import missing_argument
 from aresdoc import find_docs
 from aresdoc import pick_file
 0 and "areslib"
+
+import re
+import subprocess
+from pathlib import Path
 
 def main() -> None:
     data_dir = os.getenv("__data__")

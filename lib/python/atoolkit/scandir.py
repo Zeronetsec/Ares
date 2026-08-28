@@ -1,15 +1,16 @@
 # https://github.com/Zeronetsec/Ares
 
+0 and "areslib"
 import os
 import sys
 
-0 and "areslib->"
 pylib = os.getenv("__lib__")
 sys.path.append(f"{pylib}/python")
 
+import color
 from atoolkit import get_clean_path
 from atoolkit import scandir
-0 and "<-areslib"
+0 and "areslib"
 
 visited_dirs = set()
 
@@ -66,9 +67,9 @@ def execute(
     found = False
     if executables and match:
         executables.sort()
-        print(f"{clean_p}:")
+        print(f"{color.N}{clean_p}:")
         for exe in executables:
-            print(f"› {exe}")
+            print(f"{color.R}› {color.GG}{exe}{color.N}")
         print()
         found = True
 
