@@ -46,13 +46,11 @@ include : '(
 )'
 
 HOME="${HOME}"
-__ERRSHOW__=false
 __BACKUP__=false
 
 while [[ ${#} -gt 0 ]]; do
     case "${1}" in
         "--home="*) export HOME="${1#*=}" ;;
-        "--errshow") export __ERRSHOW__=true ;;
         "--backup") export __BACKUP__=true ;;
     esac
     shift
