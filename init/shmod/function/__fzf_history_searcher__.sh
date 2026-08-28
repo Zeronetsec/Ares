@@ -1,8 +1,7 @@
 # https://github.com/Zeronetsec/Ares
 
 function __fzf_history_searcher__() {
-    local selected_command
-    selected_command="$(
+    local selected_command="$(
         history | \
             command fzf \
                 --tac \

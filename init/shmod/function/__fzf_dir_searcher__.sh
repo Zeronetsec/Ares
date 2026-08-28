@@ -1,8 +1,7 @@
 # https://github.com/Zeronetsec/Ares
 
 function __fzf_dir_searcher__() {
-    local selected_dir
-    selected_dir="$(
+    local selected_dir="$(
         command find . -maxdepth 3 -type d \
             2>/dev/null | \
                 command fzf \
@@ -12,7 +11,7 @@ function __fzf_dir_searcher__() {
                     --header="jump to?"
     )"
     if [[ -n "${selected_dir}" ]]; then
-        cd "${selected_dir}" || return
+        cd "${selected_dir}" || return 1
         READLINE_LINE=""
         READLINE_POINT=0
     fi

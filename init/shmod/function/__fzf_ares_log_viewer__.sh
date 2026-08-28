@@ -1,9 +1,8 @@
 # https://github.com/Zeronetsec/Ares
 
 function __fzf_ares_log_viewer__() {
-    local log_dir="${areslog:-.}"
-    local selected_log
-    selected_log="$(
+    local log_dir="${__areslog__:-.}"
+    local selected_log="$(
         command find "${log_dir}" -type f \( -name "*.log" -o -name "*.txt" \) \
             2>/dev/null | \
                 command fzf \
