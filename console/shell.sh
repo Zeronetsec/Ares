@@ -23,24 +23,7 @@ else
 fi
 
 builtin shmod
-
-if [[ -f "${__aresrc__}" ]]; then
-    afill="$(
-        command grep -vE \
-            '^\s*(#|$)' \
-            "${__aresrc__}" \
-            2>/dev/null || \
-            true
-    )"
-
-    if [[ -n "${afill}" ]]; then
-        source "${__aresrc__}"
-    else
-        source "${__aresdefrc__}"
-    fi
-else
-    source "${__aresdefrc__}"
-fi
+builtin loadrc
 
 builtin destroyv : '(
     src
@@ -58,6 +41,7 @@ builtin destroyso : '(
     error
     loadso
     llsi
+    loadrc
 )'
 
 enable -d destroyso

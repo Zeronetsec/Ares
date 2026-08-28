@@ -20,6 +20,7 @@ function lib::shell::libso::free() {
         unreadonlyv
         error
         llsi
+        loadrc
     )' || return 1
 
     enable -d destroyso || return 1

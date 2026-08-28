@@ -23,6 +23,7 @@ function lib::shell::libso::init() {
         lib/shell/libso/unreadonlyv -> unreadonlyv
         lib/shell/libso/error -> error
         lib/shell/libso/llsi -> llsi
+        lib/shell/libso/loadrc -> loadrc
     )' || return 1
 
     trap 'builtin error' ERR

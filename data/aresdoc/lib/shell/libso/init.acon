@@ -41,6 +41,7 @@ Available libso:
     {color.R}- {color.GG}unreadonlyf{color.N}
     {color.R}- {color.GG}unreadonlyv{color.N}
     {color.R}- {color.GG}llsi{color.N}
+    {color.R}- {color.GG}loadrc{color.N}
 
 For more details:
     {color.R}- {color.GG}aresdoc {color.CC}lib/shell/libso/<libso>{color.N}

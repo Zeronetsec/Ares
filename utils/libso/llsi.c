@@ -65,13 +65,7 @@ int llsi_builtin(WORD_LIST *list) {
     char current_block[256] = "";
     int in_block = 0;
 
-    while (
-        fgets(
-            line,
-            sizeof(line),
-            fp
-        )
-    ) {
+    while (fgets(line, sizeof(line), fp)) {
         char *ptr = line;
         while (
             *ptr == ' ' ||
