@@ -16,8 +16,6 @@ function install::extern::binGoCompile() {
                 local expected_go="${dir_path}/${tool_name}.go"
 
                 if [[ "${go_file}" == "${expected_go}" ]]; then
-                    #echo -e "${B}[*] ${N}Compile: ${GG}${tool_name} ${DG}(${WW}lang: ${GG}go ${DG}| ${WW}type: ${color_CC}bin${DG})${N}"
-
                     local temp_bin="${target_dir}/.${tool_name}.tmp"
                     local final_bin="$(
                         command dirname "${dir_path}"

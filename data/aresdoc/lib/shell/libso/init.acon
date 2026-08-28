@@ -1,13 +1,10 @@
-{color.GG}init::{color.GG}rexso {color.N}loads the {color.GG}Ares Framework {color.N}shared-library extensions required by advanced Bash scripts.
+{color.GG}lib::shell::libso::init {color.N}loads the {color.GG}Ares Framework {color.N}shared-library extensions required by advanced Bash scripts.
 It is intended for scripting use and should not be used directly in interactive shell sessions.
 
 Usage Example:
 {color.DG}#!/usr/bin/env bash{color.N}
 
-init::rexso
-{color.BB}set {color.GG}-{color.N}o errexit
-{color.BB}trap {color.YY}'error' {color.N}ERR
-
+lib::shell::libso::init
 {color.BB}include {color.N}: {color.YY}'({color.N}
     {color.YY}lib/shell/missing_argument{color.N}
 {color.YY})'{color.N}
@@ -27,7 +24,7 @@ init::rexso
 {color.PP}fi{color.N}
 
 {color.B}echo {color.GG}-{color.N}e {color.YY}"my name is: {color.R}${name}{color.YY}"{color.N}
-init::unso {color.DG}# Usage: `aresdoc init::unso` to show documentation for init::unso{color.N}
+lib::shell::libso::free {color.DG}# Usage: `aresdoc lib::shell::libso::free` to show documentation for lib::shell::libso::free{color.N}
 
 Available libso:
     {color.R}- {color.GG}catchypr{color.N}
@@ -43,6 +40,7 @@ Available libso:
     {color.R}- {color.GG}shmod{color.N}
     {color.R}- {color.GG}unreadonlyf{color.N}
     {color.R}- {color.GG}unreadonlyv{color.N}
+    {color.R}- {color.GG}llsi{color.N}
 
 For more details:
     {color.R}- {color.GG}aresdoc {color.CC}lib/shell/libso/<libso>{color.N}

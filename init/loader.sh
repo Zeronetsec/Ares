@@ -14,6 +14,7 @@ builtin loadso : '(
     lib/shell/libso/unreadonlyf -> unreadonlyf
     lib/shell/libso/unreadonlyv -> unreadonlyv
     lib/shell/libso/error -> error
+    lib/shell/libso/llsi -> llsi
 )'
 
 trap 'builtin error' ERR

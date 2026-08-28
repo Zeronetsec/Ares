@@ -23,7 +23,6 @@ function install::extern::libsoCCompile() {
 
         [[ "${ext,,}" != 'c' ]] && continue
 
-        #echo -e "${B}[*] ${N}Compile: ${GG}${libname}.so ${DG}(${WW}lang: ${GG}c ${DG}| ${WW}type: ${BB}libso${DG})${N}"
         install::getinstall \
             "
                 command gcc \

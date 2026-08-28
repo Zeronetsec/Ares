@@ -1,6 +1,6 @@
 # https://github.com/Zeronetsec/Ares
 
-function init::unso() {
+function lib::shell::libso::free() {
     enable -f \
         "${__lib__}/shell/libso/destroyso.so" \
         destroyso || \
@@ -19,9 +19,13 @@ function init::unso() {
         unreadonlyf
         unreadonlyv
         error
+        llsi
     )' || return 1
 
     enable -d destroyso || return 1
-}; readonly -f init::unso; export -f init::unso
+
+    trap - ERR
+    set -o errexit
+}; readonly -f lib::shell::libso::free; export -f lib::shell::libso::free
 
 # Copyright (c) 2026 Zeronetsec

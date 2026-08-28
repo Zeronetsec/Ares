@@ -1,13 +1,10 @@
-{color.GG}init::unso {color.N}unloads {color.GG}Ares Framework {color.N}shared-library extensions previously loaded by {color.GG}init::rexso{color.N}.
+{color.GG}lib::shell::libso::free {color.N}unloads {color.GG}Ares Framework {color.N}shared-library extensions previously loaded by {color.GG}lib::shell::libso::init{color.N}.
 It is intended for scripting use and should be called before a script exits when shared-library extensions are no longer needed.
 
 Usage Example:
 {color.DG}#!/usr/bin/env bash{color.N}
 
-init::rexso {color.DG}# Usage: `aresdoc init::rexso` to show documentation for init::rexso{color.N}
-{color.BB}set {color.GG}-{color.N}o errexit
-{color.BB}trap {color.YY}'error' {color.N}ERR
-
+lib::shell::libso::init {color.DG}# Usage: `aresdoc lib::shell::libso::init` to show documentation for lib::shell::libso::init{color.N}
 {color.BB}include {color.N}: {color.YY}'({color.N}
     {color.YY}lib/shell/missing_argument{color.N}
 {color.YY})'{color.N}
@@ -27,10 +24,10 @@ init::rexso {color.DG}# Usage: `aresdoc init::rexso` to show documentation for i
 {color.PP}fi{color.N}
 
 {color.B}echo {color.GG}-{color.N}e {color.YY}"my name is: {color.R}${name}{color.YY}"{color.N}
-init::unso
+lib::shell::libso::free
 
-What exactly is loaded by {color.GG}init::rexso{color.N}, and what is unloaded by {color.GG}init::unso{color.N}?
+What exactly is loaded by {color.GG}lib::shell::libso::init{color.N}, and what is unloaded by {color.GG}lib::shell::libso::free{color.N}?
 See also:
-    {color.R}- {color.GG}aresdoc {color.CC}init::rexso{color.N}
+    {color.R}- {color.GG}aresdoc {color.CC}lib::shell::libso::init{color.N}
       {color.WW}and look for the {color.YY}'Available libso:' {color.WW}section,{color.N}
       {color.WW}which lists everything loaded and unloaded by these functions.{color.N}

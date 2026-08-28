@@ -118,7 +118,7 @@ int dynav_builtin(WORD_LIST *list) {
             sizeof(lower_name) - 1
         );
         lower_name[sizeof(lower_name) - 1] = '\0';
-        
+
         for (int i = 0; lower_name[i]; i++) {
             lower_name[i] = tolower(
                 (unsigned char)lower_name[i]

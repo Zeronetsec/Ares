@@ -50,16 +50,17 @@ builtin destroyv : '(
     afill
 )'
 
+builtin llsi
+
 builtin destroyso : '(
     shmod
     destroyv
     error
     loadso
+    llsi
 )'
 
 enable -d destroyso
-source "${__init__}/rexso.sh"
-source "${__init__}/unso.sh"
 
 set +o errexit
 trap - ERR

@@ -1,6 +1,8 @@
 # https://github.com/Zeronetsec/Ares
 
-function init::rexso() {
+function lib::shell::libso::init() {
+    set -o errexit
+
     enable -f \
         "${__lib__}/shell/libso/loadso.so" \
         loadso || \
@@ -20,7 +22,10 @@ function init::rexso() {
         lib/shell/libso/unreadonlyf -> unreadonlyf
         lib/shell/libso/unreadonlyv -> unreadonlyv
         lib/shell/libso/error -> error
+        lib/shell/libso/llsi -> llsi
     )' || return 1
-}; readonly -f init::rexso; export -f init::rexso
+
+    trap 'builtin error' ERR
+}; readonly -f lib::shell::libso::init; export -f lib::shell::libso::init
 
 # Copyright (c) 2026 Zeronetsec

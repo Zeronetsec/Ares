@@ -1,0 +1,4 @@
+lib::shell::libso {
+    runtime.init -> lib/shell/libso/init.init
+    runtime.free -> lib/shell/libso/free.init
+}
