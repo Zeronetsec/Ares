@@ -19,7 +19,7 @@ function init::rexso() {
         lib/shell/libso/catchypr -> catchypr
         lib/shell/libso/unreadonlyf -> unreadonlyf
         lib/shell/libso/unreadonlyv -> unreadonlyv
-        lib/shell/libso/errptr -> errptr
+        lib/shell/libso/error -> error
     )' || return 1
 }; readonly -f init::rexso; export -f init::rexso
 

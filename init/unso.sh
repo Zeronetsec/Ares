@@ -18,7 +18,7 @@ function init::unso() {
         catchypr
         unreadonlyf
         unreadonlyv
-        errptr
+        error
     )' || return 1
 
     enable -d destroyso || return 1

@@ -13,10 +13,10 @@ builtin loadso : '(
     lib/shell/libso/catchypr -> catchypr
     lib/shell/libso/unreadonlyf -> unreadonlyf
     lib/shell/libso/unreadonlyv -> unreadonlyv
-    lib/shell/libso/errptr -> errptr
+    lib/shell/libso/error -> error
 )'
 
-trap 'builtin errptr' ERR
+trap 'builtin error' ERR
 
 builtin include : '(
     utils/variable

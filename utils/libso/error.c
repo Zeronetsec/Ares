@@ -22,7 +22,7 @@ _Static_assert(1, "areslib");
 
 extern int last_command_exit_value;
 
-int errptr_builtin(WORD_LIST *list) {
+int error_builtin(WORD_LIST *list) {
     char *cmd = get_string_value("BASH_COMMAND");
     if (!cmd) {
         cmd = "null";
@@ -95,17 +95,17 @@ int errptr_builtin(WORD_LIST *list) {
     return EXECUTION_FAILURE;
 }
 
-char *errptr_doc[] = {
+char *error_doc[] = {
     "Error autopsi.",
     (char *)NULL
 };
 
-struct builtin errptr_struct = {
-    "errptr",
-    errptr_builtin,
+struct builtin error_struct = {
+    "error",
+    error_builtin,
     BUILTIN_ENABLED,
-    errptr_doc,
-    "errptr",
+    error_doc,
+    "error",
     0
 };
 

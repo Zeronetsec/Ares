@@ -6,10 +6,10 @@ readonly SHELL || exit 1
 
 enable -f "${__aresroot__}/utils/libso/loadso.so" loadso || exit 1
 builtin loadso : '(
-    lib/shell/libso/errptr -> errptr
+    lib/shell/libso/error -> error
 )' || exit 1
 
-trap 'builtin errptr' ERR || exit 1
+trap 'builtin error' ERR || exit 1
 
 __aresloader__="${__init__}/loader.sh"
 __aresdefrc__="${__console__}/ares.rc"
@@ -53,7 +53,7 @@ builtin destroyv : '(
 builtin destroyso : '(
     shmod
     destroyv
-    errptr
+    error
     loadso
 )'
 
