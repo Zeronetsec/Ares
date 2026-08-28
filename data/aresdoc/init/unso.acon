@@ -1,0 +1,36 @@
+{color.GG}init::unso {color.N}unloads {color.GG}Ares Framework {color.N}shared-library extensions previously loaded by {color.GG}init::rexso{color.N}.
+It is intended for scripting use and should be called before a script exits when shared-library extensions are no longer needed.
+
+Usage Example:
+{color.DG}#!/usr/bin/env bash{color.N}
+
+init::rexso {color.DG}# Usage: `aresdoc init::rexso` to show documentation for init::rexso{color.N}
+{color.BB}set {color.GG}-{color.N}o errexit
+{color.BB}trap {color.YY}'error' {color.N}ERR
+
+{color.BB}include {color.N}: {color.YY}'({color.N}
+    {color.YY}lib/shell/missing_argument{color.N}
+{color.YY})'{color.N}
+
+{color.R}name{color.GG}={color.YY}""{color.N}
+{color.PP}readonly {color.R}name{color.N}
+
+{color.PP}if {color.N}[[ {color.GG}-n {color.YY}"{color.R}${1}{color.YY}" {color.N}]]; {color.PP}then
+    {color.BB}unreadonlyv {color.N}: {color.YY}'({color.N}
+        {color.YY}name{color.N}
+    {color.YY})'{color.N}
+    {color.R}name{color.GG}={color.YY}"{color.R}${1}{color.YY}"{color.N}
+    {color.PP}readonly {color.R}name{color.N}
+{color.PP}else{color.N}
+    lib::shell::missing_argument {color.YY}"myscript"{color.N}
+    {color.B}exit {color.RO}1{color.N}
+{color.PP}fi{color.N}
+
+{color.B}echo {color.GG}-{color.N}e {color.YY}"my name is: {color.R}${name}{color.YY}"{color.N}
+init::unso
+
+What exactly is loaded by {color.GG}init::rexso{color.N}, and what is unloaded by {color.GG}init::unso{color.N}?
+See also:
+    {color.R}- {color.GG}aresdoc {color.CC}init::rexso{color.N}
+      {color.WW}and look for the {color.YY}'Available libso:' {color.WW}section,{color.N}
+      {color.WW}which lists everything loaded and unloaded by these functions.{color.N}
