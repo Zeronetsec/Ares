@@ -14,21 +14,34 @@ _Static_assert(1, "areslib");
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/stat.h>
-#include <builtins.h>
 #include <shell.h>
+#include <builtins.h>
+#include <execute_cmd.h>
+#include <sys/stat.h>
 #include <builtins/common.h>
 
 int llsi_builtin(WORD_LIST *list) {
-    char *aresroot = get_string_value("__aresroot__");
-    if (!aresroot) {
+    char *aresroot_val = get_string_value("__aresroot__");
+    if (
+        !aresroot_val ||
+        strlen(aresroot_val) == 0
+    ) {
         fprintf(
             stderr,
-            "%s[!] %sLlsi: variable %s__aresroot__ %snot founf!\n",
+            "%s[!] %sLlsi: variable %s__aresroot__ %snot found!\n",
             R, N, GG, N
         );
         return EXECUTION_FAILURE;
     }
+
+    char aresroot[1024];
+    strncpy(
+        aresroot,
+        aresroot_val,
+        sizeof(aresroot) - 1
+    );
+    aresroot[sizeof(aresroot) - 1] = '\0';
+    size_t root_len = strlen(aresroot);
 
     char init_file[4096];
     snprintf(
@@ -72,7 +85,9 @@ int llsi_builtin(WORD_LIST *list) {
         if (
             *ptr == '\0' ||
             *ptr == '#'
-        ) continue;
+        ) {
+            continue;
+        }
 
         if (*ptr == '}') {
             in_block = 0;
@@ -130,22 +145,27 @@ int llsi_builtin(WORD_LIST *list) {
                     val++;
                 }
 
-                char *vend = val + strlen(val) - 1;
-                while (
-                    vend >= val &&
-                    (
-                        *vend == ' ' ||
-                        *vend == '\t' ||
-                        *vend == '\n' ||
-                        *vend == '\r'
-                    )
-                ) {
-                    *vend-- = '\0';
+                size_t vlen = strlen(val);
+                if (vlen > 0) {
+                    char *vend = val + vlen - 1;
+                    while (
+                        vend >= val &&
+                        (
+                            *vend == ' ' ||
+                            *vend == '\t' ||
+                            *vend == '\n' ||
+                            *vend == '\r'
+                        )
+                    ) {
+                        *vend-- = '\0';
+                    }
                 }
 
-                char target_path[1024];
+                if (*val == '\0') continue;
+
+                char target_path[2048];
                 if (
-                    aresroot[strlen(aresroot) - 1] == '/' ||
+                    aresroot[root_len - 1] == '/' ||
                     val[0] == '/'
                 ) {
                     snprintf(
@@ -167,7 +187,7 @@ int llsi_builtin(WORD_LIST *list) {
 
                 struct stat st;
                 if (stat(target_path, &st) == 0) {
-                    char cmd[1024];
+                    char cmd[4096];
                     snprintf(
                         cmd,
                         sizeof(cmd),
@@ -175,10 +195,10 @@ int llsi_builtin(WORD_LIST *list) {
                         target_path
                     );
 
-                    evalstring(
-                        cmd,
+                    parse_and_execute(
+                        savestring(cmd),
                         "llsi_builtin",
-                        0
+                        SEVAL_NONINT | SEVAL_NOHIST
                     );
                 } else {
                     printf(

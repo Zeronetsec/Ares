@@ -9,7 +9,7 @@ function module::Exec() {
     export SHELL="${0}"; readonly SHELL
     exec -a 'Ares Framework Console' \
         bash --rcfile \
-        "${__aresroot__}/console/shell.sh" -i -c "${@}"
+        "${__aresroot__}/console/shell.sh" -i -c "${*}"
 }; readonly -f module::Exec
 
 # Copyright (c) 2026 Zeronetsec
