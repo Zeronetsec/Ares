@@ -1,0 +1,8 @@
+{color.GG}Remake {color.N}recreates files or directories by removing the existing target and creating a fresh replacement.
+
+Usage: {color.GG}remake {color.CC}<file|dir> [--mode <xxxx>]{color.N}
+
+Example:
+    {color.R}- {color.GG}remake {color.CC}build/{color.N}
+    {color.R}- {color.GG}remake {color.CC}cache/ --mode 0755{color.N}
+    {color.R}- {color.GG}remake {color.CC}output.log{color.N}

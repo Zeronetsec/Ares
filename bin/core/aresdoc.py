@@ -76,7 +76,7 @@ def main() -> None:
             "--paging=never",
             selected_file,
         ])
-        print()
+        print(f"{color.N}")
     else:
         ext = Path(selected_file).suffix.lower()
         if ext == ".acon":
@@ -91,7 +91,7 @@ def main() -> None:
                 "-w",
                 "0",
             ])
-        print()
+        print(f"{color.N}")
 
 if __name__ == "__main__":
     main()
