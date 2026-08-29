@@ -24,6 +24,8 @@ builtin include : '(
 )'
 
 stconf="${__config__}/startup.conf"
+gscache="${PREFIX}/goscript_cache"
+
 if [[
     "$(
         command getconf "${stconf}" \
@@ -44,8 +46,21 @@ if [[
             --get 1
     )" == true
 ]]; then
-    command rm -rf "${HOME}/.ares_log"
-    command mkdir -p "${HOME}/.ares_log"
+    command remake "${HOME}/.ares_log" \
+        --mode 0644 \
+        > /dev/null 2>&1
+fi
+
+if [[
+    "$(
+        command getconf "${stconf}" \
+            --key 'remove_gscache' \
+            --get 1
+    )" == true
+]]; then
+    command remake "${gscache}" \
+        --mode 0644 \
+        > /dev/null 2>&1
 fi
 
 builtin shmod
@@ -58,6 +73,7 @@ builtin destroyv : '(
     __aresloader__
     __aresdefrc__
     stconf
+    gscache
 )'
 
 builtin destroyso : '(

@@ -130,6 +130,11 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    printf(
+        "%s[+] %sSet: %s%s %s(%s%s %s= %s%s%s)%s\n",
+        GG, N, GG, filename, DG, CC, key, DG, CC, val, DG, N
+    );
+
     return 0;
 }
 
