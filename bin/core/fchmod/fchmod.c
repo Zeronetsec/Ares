@@ -15,25 +15,29 @@ _Static_assert(1, "areslib");
 #include <sys/stat.h>
 
 typedef struct {
-    mode_t mode;
-    bool mode_set;
+    mode_t mode_dir;
+    mode_t mode_file;
+    mode_t mode_symlink;
+
+    bool mode_dir_set;
+    bool mode_file_set;
+    bool mode_symlink_set;
+
     bool only_file;
     bool only_dir;
     bool only_symlink;
+    
+    bool recursive;
     char ext[256];
     bool has_ext;
 } Options;
 
 bool ends_with(const char *str, const char *suffix) {
-    if (!str || !suffix) {
-        return false;
-    }
+    if (!str || !suffix) return false;
 
     size_t len_str = strlen(str);
     size_t len_suffix = strlen(suffix);
-    if (len_suffix > len_str) {
-        return false;
-    }
+    if (len_suffix > len_str) return false;
 
     return strncmp(
         str + len_str - len_suffix,
@@ -41,38 +45,105 @@ bool ends_with(const char *str, const char *suffix) {
     ) == 0;
 }
 
-bool should_chmod(
-    const char *filepath,
+bool parse_modes(const char *mode_str, Options *opts) {
+    char *buf = strdup(mode_str);
+    if (!buf) return false;
+
+    char *token = strtok(buf, ":");
+    while (token != NULL) {
+        char type = token[0];
+        char *mode_val_str = token + 1;
+
+        if (strlen(token) < 2) {
+            free(buf);
+            return false;
+        }
+
+        mode_t parsed_mode = strtol(mode_val_str, NULL, 8);
+
+        if (
+            type == 'd' ||
+            type == 'D'
+        ) {
+            opts->mode_dir = parsed_mode;
+            opts->mode_dir_set = true;
+        } else if (
+            type == 'f' ||
+            type == 'F'
+        ) {
+            opts->mode_file = parsed_mode;
+            opts->mode_file_set = true;
+        } else if (
+            type == 's' ||
+            type == 'S'
+        ) {
+            opts->mode_symlink = parsed_mode;
+            opts->mode_symlink_set = true;
+        } else {
+            mode_t global_mode = strtol(token, NULL, 8);
+            opts->mode_dir = global_mode;
+            opts->mode_file = global_mode;
+            opts->mode_symlink = global_mode;
+            opts->mode_dir_set = opts->mode_file_set = opts->mode_symlink_set = true;
+        }
+        token = strtok(NULL, ":");
+    }
+    free(buf);
+
+    if (
+        opts->mode_file_set &&
+        !opts->mode_symlink_set
+    ) {
+        opts->mode_symlink = opts->mode_file;
+        opts->mode_symlink_set = true;
+    }
+
+    return opts->mode_dir_set ||
+        opts->mode_file_set ||
+        opts->mode_symlink_set;
+}
+
+bool get_target_mode(
     struct stat *st,
-    Options *opts
+    Options *opts,
+    mode_t *out_mode
 ) {
     if (S_ISDIR(st->st_mode)) {
-        return opts->only_dir;
-    } else if (S_ISREG(st->st_mode)) {
-        if (!opts->only_file) {
-            return false;
-        }
-
         if (
-            opts->has_ext &&
-            !ends_with(filepath, opts->ext)
+            !opts->only_dir ||
+            !opts->mode_dir_set
         ) {
             return false;
         }
+
+        *out_mode = opts->mode_dir;
         return true;
-    } else if (S_ISLNK(st->st_mode)) {
-        if (!opts->only_symlink) {
-            return false;
-        }
+    } 
 
+    if (S_ISREG(st->st_mode)) {
         if (
-            opts->has_ext &&
-            !ends_with(filepath, opts->ext)
+            !opts->only_file ||
+            !opts->mode_file_set
         ) {
             return false;
         }
+
+        *out_mode = opts->mode_file;
+        return true;
+    } 
+
+    if (S_ISLNK(st->st_mode)) {
+        if (
+            !opts->only_symlink ||
+            !opts->mode_symlink_set
+        ) {
+            return false;
+        }
+
+        *out_mode = opts->mode_symlink;
         return true;
     }
+
     return false;
 }
 
@@ -83,18 +154,33 @@ void process_path(const char *path, Options *opts) {
         return;
     }
 
-    if (should_chmod(path, &st, opts)) {
-        if (chmod(path, opts->mode) == 0) {
+    bool matches_ext = true;
+    if (
+        opts->has_ext &&
+        !S_ISDIR(st.st_mode)
+    ) {
+        matches_ext = ends_with(path, opts->ext);
+    }
+
+    mode_t target_mode = 0;
+    if (
+        matches_ext &&
+        get_target_mode(&st, opts, &target_mode)
+    ) {
+        if (chmod(path, target_mode) == 0) {
             printf(
                 "%s[+] %sSet mode: %s%04o %s-> %s%s%s\n",
-                GG, N, GG, opts->mode, DG, GG, path, N
+                GG, N, GG, target_mode, DG, GG, path, N
             );
         } else {
             perror(path);
         }
     }
 
-    if (S_ISDIR(st.st_mode)) {
+    if (
+        S_ISDIR(st.st_mode) &&
+        opts->recursive
+    ) {
         DIR *dir = opendir(path);
         if (!dir) {
             perror(path);
@@ -125,26 +211,31 @@ void process_path(const char *path, Options *opts) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc < 4) {
+    if (argc < 3) {
         missing_argument("fchmod");
         return 1;
     }
 
     Options opts = {0};
     char *target = NULL;
+    char *mode_raw = NULL;
     bool only_flag_seen = false;
 
     opts.only_file = true;
     opts.only_dir = true;
     opts.only_symlink = true;
+    opts.recursive = true;
 
     for (int i = 1; i < argc; i++) {
         if (
             strcmp(argv[i], "--mode") == 0 &&
             i + 1 < argc
         ) {
-            opts.mode = strtol(argv[++i], NULL, 8);
-            opts.mode_set = true;
+            mode_raw = argv[++i];
+        } else if (
+            strcmp(argv[i], "--norecursive") == 0
+        ) {
+            opts.recursive = false;
         } else if (
             strcmp(argv[i], "--only") == 0 &&
             i + 1 < argc
@@ -154,11 +245,17 @@ int main(int argc, char *argv[]) {
                 only_flag_seen = true;
             }
             i++;
-            if (strcmp(argv[i], "file") == 0) {
+            if (
+                strcmp(argv[i], "file") == 0
+            ) {
                 opts.only_file = true;
-            } else if (strcmp(argv[i], "dir") == 0) {
+            } else if (
+                strcmp(argv[i], "dir") == 0
+            ) {
                 opts.only_dir = true;
-            } else if (strcmp(argv[i], "symlink") == 0) {
+            } else if (
+                strcmp(argv[i], "symlink") == 0
+            ) {
                 opts.only_symlink = true;
             } else {
                 char invalid_args[256]; 
@@ -190,8 +287,16 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    if (!target || !opts.mode_set) {
+    if (!target || !mode_raw) {
         missing_argument("fchmod");
+        return 1;
+    }
+
+    if (!parse_modes(mode_raw, &opts)) {
+        printf(
+            "%s[!] %sInvalid mode syntax: %s%s%s\n",
+            R, N, GG, mode_raw, N
+        );
         return 1;
     }
 

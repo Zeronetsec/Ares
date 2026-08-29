@@ -32,8 +32,9 @@ if [[
     )" == true
 ]]; then
     command fchmod "${__bin__}" \
-        --mode 0755 \
-        --only file > /dev/null 2>&1
+        --mode f0755 \
+        --only file \
+        > /dev/null 2>&1
 fi
 
 if [[
