@@ -1,0 +1,28 @@
+{color.GG}LLSI {color.WW}(Loadable Library Shell Initialization) {color.N}is a runtime loading system that exposes registered functions and variables to the global shell environment.
+It provides flexible framework-wide functionality for scripting, but should be used carefully due to its global scope.
+
+{color.YY}Warning{color.N}:
+    {color.R}- {color.WW}LLSI modifies the global shell environment.{color.N}
+    {color.R}- {color.WW}Improper use may cause function or variable conflicts.{color.N}
+    {color.R}- {color.WW}Recommended only for framework internals and advanced scripting.{color.N}
+    {color.R}- {color.BB}init/llsi.init {color.WW}does not support comment syntax of any kind.{color.N}
+
+Example {color.GG}init/llsi.init {color.N}syntax:
+{color.R}your{color.GG}::{color.R}lib{color.GG}::{color.R}name {color.N}{
+    key {color.GG}-> {color.CC}source{color.N}
+    key {color.GG}-> {color.CC}source{color.N}
+}
+
+Real Example:
+{color.R}your{color.GG}::{color.R}lib{color.GG}::{color.R}name {color.N}{
+    runtime.{color.BB}init {color.GG}-> {color.CC}lib/shell/myinit.init{color.N}
+    runtime.{color.BB}free {color.GG}-> {color.CC}lib/shell/myfree.init{color.N}
+}
+
+Ensure the source file includes `{color.PP}readonly {color.GG}-{color.N}f {color.R}yourfunc{color.N}` and `{color.PP}export {color.GG}-{color.N}f {color.R}yourfunc{color.N}`.
+For reliability and security, exported functions should also be marked readonly.
+This prevents accidental or intentional overrides by other sources.
+Without export, functions will not be available for use in scripts.
+
+For variables:
+{color.PP}export {color.R}myval{color.GG}={color.N}val; {color.PP}readonly {color.R}myval{color.N}

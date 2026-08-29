@@ -74,9 +74,9 @@ def main() -> None:
             "--color=always",
             "--decorations=never",
             "--paging=never",
-            "--language=markdown",
             selected_file,
         ])
+        print()
     else:
         ext = Path(selected_file).suffix.lower()
         if ext == ".acon":
@@ -91,6 +91,7 @@ def main() -> None:
                 "-w",
                 "0",
             ])
+        print()
 
 if __name__ == "__main__":
     main()
