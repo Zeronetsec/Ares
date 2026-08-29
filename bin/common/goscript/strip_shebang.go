@@ -14,25 +14,40 @@ func stripShebang(src, dst string) error {
     }
 
     lines := strings.Split(string(data), "\n")
-    if len(lines) > 0 && strings.HasPrefix(lines[0], "#!") {
+    if len(lines) > 0 && strings.HasPrefix(
+        lines[0], "#!",
+    ) {
         lines = lines[1:]
     }
 
     var result strings.Builder
-    result.WriteString("package main\n\n")
+
+    hasPackage := false
+    for _, line := range lines {
+        if strings.HasPrefix(
+            strings.TrimSpace(line),
+            "package ",
+        ) {
+            hasPackage = true
+            break
+        }
+    }
+
+    if !hasPackage {
+        result.WriteString(
+            "package main\n\n",
+        )
+    }
 
     for _, line := range lines {
-        trimmed := strings.TrimSpace(line)
-        if strings.HasPrefix(trimmed, "package ") {
-            continue
-        }
-
         result.WriteString(line)
         result.WriteString("\n")
     }
 
     return os.WriteFile(
-        dst, []byte(result.String()), 0644,
+        dst,
+        []byte(result.String()),
+        0644,
     )
 }
 

@@ -1,7 +1,9 @@
 {color.GG}GoScript {color.N}executes single-file {color.GG}.gs {color.N}scripts at native Go speed.
 It automatically caches the compiled binary on the first run, re-compiling only when source code changes, and supports external packages without {color.GG}go.mod {color.N}or {color.GG}go.sum{color.N}.
 
-Usage: {color.GG}goscript {color.CC}<script.gs>{color.N}
+Usage:
+    {color.R}- {color.GG}goscript {color.CC}<script.gs> [args...] [--compile [<out>]]{color.N}
+    {color.R}- {color.GG}goscript {color.CC}--code <code> [--compile [<out>]]{color.N}
 
 Example {color.GG}hello.gs{color.N}:
 {color.DG}#!/usr/bin/env goscript{color.N}
@@ -22,3 +24,6 @@ Example {color.GG}hello.gs{color.N}:
 
 and run: {color.GG}goscript {color.CC}hello.gs{color.N}
 or: {color.GG}chmod {color.CC}+x hello.gs {color.GG}&& {color.N}./hello.gs
+
+inline mode:
+    {color.R}- {color.GG}goscript {color.CC}--code 'import "fmt"; func main() { fmt.Println("Hello World!"); }'{color.N}
