@@ -1,0 +1,6 @@
+{color.GG}Setconf {color.N}writes values to key-value configuration files, supporting both {color.GG}key=value {color.N}and {color.GG}key = value {color.N}syntax.
+
+Usage: {color.GG}setconf {color.CC}<file.conf> --key <key> --value <value>{color.N}
+
+Example:
+    {color.R}- {color.GG}setconf {color.CC}myfile.conf --key test --value true{color.N}

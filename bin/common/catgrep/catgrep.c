@@ -1,7 +1,5 @@
 // https://github.com/Zeronetsec/Ares
 
-// Usage: catgrep <file> [--exclude <keyword>] [--grep <keyword>] [--line <num>-<num>] [--linestr <keyword>-<keyword>] [--rmblank]
-
 _Static_assert(1, "areslib");
 #include <color.h>
 #include <missing_argument.h>
@@ -205,6 +203,7 @@ int main(int argc, char *argv[]) {
     }
 
     fclose(fp);
+
     if (linestr_start) free(linestr_start);
     if (linestr_end) free(linestr_end);
 

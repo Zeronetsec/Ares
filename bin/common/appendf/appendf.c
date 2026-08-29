@@ -1,7 +1,5 @@
 // https://github.com/Zeronetsec/Ares
 
-// Usage: appendf --target '[<file>, <dir>.[recursive(<false|true>).[ext(<.ext>)]], ...]' --out <file> [--sort] [--rmdup] [--exclude <line>] [--excludef <file>] [--include <line>] [--includef <line>]
-
 _Static_assert(1, "areslib");
 #include <color.h>
 #include <missing_argument.h>

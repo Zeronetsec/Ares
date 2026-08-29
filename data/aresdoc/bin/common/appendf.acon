@@ -1,0 +1,8 @@
+{color.GG}Appendf {color.N}aggregates content from multiple files and directories into a single output file, supporting recursive discovery, extension filtering, line filtering, sorting, and duplicate removal.
+
+Usage: {color.GG}appendf {color.CC}--target '[<file>, <dir>.[recursive(<false|true>).[ext(<.ext>)]], ...]' --out <file> [--sort] [--rmdup] [--exclude <line>] [--excludef <file>] [--include <line>] [--includef <file>]{color.N}
+
+Example:
+    {color.R}- {color.GG}appendf {color.CC}--target "[$HOME/myfile.txt]" --out $HOME/newfile.txt --sort --rmdup --exclude "hello world!"{color.N}
+    {color.R}- {color.GG}appendf {color.CC}--target "[mydir.recursive(true).ext(.txt), mydir2.recursive(false)]" --out newfile.txt --excludef mydir/text.txt --include "hello world!" --includef mydir3/text.txt{color.N}
+    {color.R}- {color.GG}appendf {color.CC}--target "[myfile.txt, myfile2.txt, mydir/.recursive(false).ext(.txt)]" --out newfile.txt --rmdup{color.N}

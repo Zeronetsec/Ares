@@ -1,0 +1,8 @@
+{color.GG}Catgrep {color.N}displays file content with support for keyword filtering, line-range selection, blank-line removal, and content extraction between matching markers.
+
+Usage: {color.GG}catgrep {color.CC}<file> [--exclude <keyword>] [--grep <keyword>] [--line <num>-<num>] [--linestr <keyword>-<keyword>] [--rmblank]{color.N}
+
+Example:
+    {color.R}- {color.GG}catgrep {color.CC}myfile.sh --linestr 'if*'-'fi*' --exclude '#*' --rmblank{color.N}
+    {color.R}- {color.GG}catgrep {color.CC}log.txt --grep '*error*'{color.N}
+    {color.R}- {color.GG}catgrep {color.CC}text.txt --exclude '*something*' --line 10-100{color.N}

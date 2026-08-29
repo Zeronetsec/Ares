@@ -1,7 +1,5 @@
 // https://github.com/Zeronetsec/Ares
 
-// Usage: setconf <file.conf> --key <key> --value <value>
-
 _Static_assert(1, "areslib");
 #include <color.h>
 #include <missing_argument.h>
