@@ -2,6 +2,7 @@ function install::extern::removeExt() {
     local target_dir="${opt}/${targetins}/bin"
 
     shopt -s globstar nullglob
+
     for file in "${target_dir}"/**; do
         [[ -f "${file}" ]] || continue
 

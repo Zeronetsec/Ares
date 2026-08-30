@@ -28,7 +28,7 @@ function install::extern::binGoCompile() {
                                 command go mod tidy
                                 command go build -o ${temp_bin}
                             " \
-                            "Compiling: ${GG}${tool_name} ${DG}(${WW}lang: ${GG}go${DG}, ${WW}type: ${color_CC}bin${DG})${N}"
+                            "Compiling: ${color_GG}${tool_name} ${color_DG}(${color_WW}lang: ${color_GG}go${color_DG}, ${color_WW}type: ${color_CC}bin${color_DG})${color_N}"
                     )
 
                     if [[ -f "${temp_bin}" ]]; then

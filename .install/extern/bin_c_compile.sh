@@ -29,7 +29,7 @@ function install::extern::binCCompile() {
                                 -o ${temp_bin} \
                                 -I${opt}/${targetins}/lib/c
                         " \
-                        "Compiling: ${GG}${tool_name} ${DG}(${WW}lang: ${GG}c${DG}, ${WW}type: ${color_CC}bin${DG})${N}"
+                        "Compiling: ${color_GG}${tool_name} ${color_DG}(${color_WW}lang: ${color_GG}c${color_DG}, ${color_WW}type: ${color_CC}bin${color_DG})${color_N}"
 
                     if [[ -f "${temp_bin}" ]]; then
                         command rm -rf "${dir_path}"

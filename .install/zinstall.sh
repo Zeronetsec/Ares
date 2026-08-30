@@ -2,19 +2,19 @@ function install::zinstall() {
     function __exit__() {
         local code="${1}"
         if [[ "${code}" -gt 0 ]]; then
-            echo -e " ${DG}- ${N}error: ${R}${code}${N}"
+            echo -e " ${color_DG}- ${color_N}error: ${color_R}${code}${color_N}"
             return ${code}
         fi
-        echo -e " ${DG}- ${N}exit: ${GG}${code}${N}"
+        echo -e " ${color_DG}- ${color_N}exit: ${color_GG}${code}${color_N}"
         return ${code}
-    }
+    }; readonly -f __exit__
 
     local pkg="${1}"
     if [[ -z "${pkg}" ]]; then
         return 1
     fi
 
-    echo -ne "${DG}-> ${N}Try: ${GG}${pkg}${N}"
+    echo -ne "${color_DG}-> ${color_N}Try: ${color_GG}${pkg}${color_N}"
 
     if command -v pacman &>/dev/null; then
         if command -v paru &>/dev/null; then
@@ -46,7 +46,7 @@ function install::zinstall() {
         command snap install "${pkg}" > /dev/null 2>&1
         __exit__ ${?}
     else
-        echo -e "${R}[!] ${N}Unknown package manager!"
+        echo -e "${color_R}[!] ${color_N}Unknown package manager!"
         return 1
     fi
 }; readonly -f install::zinstall

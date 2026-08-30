@@ -1,13 +1,4 @@
 function install::extern::libsoCCompile() {
-    if [[ ! -d "${opt}/${targetins}/lib/shell/libso" ]]; then
-        install::getinstall \
-            "
-                command mkdir -p \
-                    ${opt}/${targetins}/lib/shell/libso
-            " \
-            "Create directory: ${GG}${opt}/${targetins}/lib/shell/libso${N}"
-    fi
-
     local clibs
     command mapfile -t clibs < <(
         command ls \
@@ -34,7 +25,7 @@ function install::extern::libsoCCompile() {
                     -I${prefix}/include/bash/builtins \
                     -I${opt}/${targetins}/lib/c
             " \
-            "Compiling: ${GG}${libname}.so ${DG}(${WW}lang: ${GG}c${DG}, ${WW}type: ${BB}libso${DG})${N}"
+            "Compiling: ${color_GG}${libname}.so ${color_DG}(${color_WW}lang: ${color_GG}c${color_DG}, ${color_WW}type: ${color_BB}libso${color_DG})${color_N}"
 
         command ln -sf \
             "${opt}/${targetins}/utils/libso/${libname}.so" \
