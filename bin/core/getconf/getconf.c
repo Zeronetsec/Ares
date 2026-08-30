@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
     if (!fp) {
         printf(
             "%s[!] %sError to opening: %s%s%s\n",
-            R, N, GG, filename, N
+            color_R, color_N, color_GG, filename, color_N
         );
         return 1;
     }
@@ -106,7 +106,7 @@ int main(int argc, char *argv[]) {
     if (!found_val) {
         printf(
             "%s[!] %sKey: %s%s %snot found!\n",
-            R, N, GG, key, N
+            color_R, color_N, color_GG, key, color_N
         );
         return 1;
     }

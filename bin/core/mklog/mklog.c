@@ -121,7 +121,7 @@ int main(int argc, char *argv[]) {
     if (stat(baseDir, &st) == -1) {
         printf(
             "%s[!] %sError create directory: %s%s%s\n",
-            R, N, GG, strerror(errno), N
+            color_R, color_N, color_GG, strerror(errno), color_N
         );
         return 1;
     }
@@ -146,7 +146,7 @@ int main(int argc, char *argv[]) {
     if (f == NULL) {
         printf(
             "%s[!] %sError open/create file: %s%s%s\n",
-            R, N, GG, strerror(errno), N
+            color_R, color_N, color_GG, strerror(errno), color_N
         );
         return 1;
     }
@@ -154,7 +154,7 @@ int main(int argc, char *argv[]) {
     if (fputs(fullLogLine, f) == EOF) {
         printf(
             "%s[!] %sError writing log: %s%s%s\n",
-            R, N, GG, strerror(errno), N
+            color_R, color_N, color_GG, strerror(errno), color_N
         );
         fclose(f);
         return 1;

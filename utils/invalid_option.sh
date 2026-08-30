@@ -2,8 +2,8 @@
 
 function utils::invalidOption() {
     local input="${1}"
-    echo -e "${R}[!] ${N}Invalid option: ${GG}${input}${N}"
-    echo -e "${R}[!] ${N}Try: ${GG}ares --help${N}"
+    echo -e "${color_R}[!] ${color_N}Invalid option: ${color_GG}${input}${color_N}"
+    echo -e "${color_R}[!] ${color_N}Try: ${color_GG}ares --help${color_N}"
     return 1
 }; readonly -f utils::invalidOption
 

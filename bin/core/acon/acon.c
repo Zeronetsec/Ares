@@ -83,7 +83,7 @@ void load_syntax(const char *file) {
         fprintf(
             stderr,
             "%s[!] %sError reading syntax map: %s%s%s\n",
-            R, N, GG, file, N
+            color_R, color_N, color_GG, file, color_N
         );
         exit(1);
     }
@@ -164,7 +164,7 @@ void run_acon(const char *file, int raw_mode) {
         fprintf(
             stderr,
             "%s[!] %sError reading file: %s%s%s\n",
-            R, N, GG, file, N
+            color_R, color_N, color_GG, file, color_N
         );
         exit(1);
     }
@@ -282,7 +282,7 @@ int main(int argc, char *argv[]) {
             fprintf(
                 stderr,
                 "%s[!] %sDefault syntax map is empty!\n",
-                R, N
+                color_R, color_N
             );
             return 1;
         }

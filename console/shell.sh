@@ -17,8 +17,7 @@ __aresdefrc__="${__console__}/ares.rc"
 if [[ -f "${__aresloader__}" ]]; then
     source "${__aresloader__}"
 else
-    echo -e "${R}[!] ${N}Error: missing init loader in ${GG}${__aresloader__}${N}"
-    printf '\033[?25h'
+    echo -e "${color_R}[!] ${color_N}Error: missing init loader in ${color_GG}${__aresloader__}${color_N}"
     exit 1
 fi
 

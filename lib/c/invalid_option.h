@@ -15,12 +15,12 @@ static inline void invalid_option(
 ) {
     printf(
         "%s[!] %sInvalid option: %s%s%s\n",
-        R, N, GG, invalid_arg, N
+        color_R, color_N, color_GG, invalid_arg, color_N
     );
 
     printf(
         "%s[!] %sTry: %saresdoc %s%s%s\n",
-        R, N, GG, CC, command, N
+        color_R, color_N, color_GG, color_CC, command, color_N
     );
 }
 

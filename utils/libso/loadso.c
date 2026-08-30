@@ -135,7 +135,7 @@ int loadso_builtin(WORD_LIST *list) {
             ) {
                 printf(
                     "%s[!] %sInvalid syntax!\n",
-                    R, N
+                    color_R, color_N
                 );
                 status = EXECUTION_FAILURE;
                 break;
@@ -160,7 +160,7 @@ int loadso_builtin(WORD_LIST *list) {
             ) {
                 printf(
                     "%s[!] %sLoadso: %s%s %snot found!\n",
-                    R, N, GG, module_path, N
+                    color_R, color_N, color_GG, module_path, color_N
                 );
                 status = EXECUTION_FAILURE;
                 break;

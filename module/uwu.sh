@@ -10,7 +10,7 @@ function module::Uwu() {
         "${engine}"
         return ${?}
     else
-        echo -e "${R}[!] ${N}Engine: ${GG}${engine} ${N}not found!"
+        echo -e "${color_R}[!] ${color_N}Engine: ${color_GG}${engine} ${color_N}not found!"
         return 1
     fi
 

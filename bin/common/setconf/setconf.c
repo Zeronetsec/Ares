@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
     if (!tmp_fp) {
         printf(
             "%s[!] %sError creating temp file: %s%s%s\n",
-            R, N, GG, tmp_filename, N
+            color_R, color_N, color_GG, tmp_filename, color_N
         );
         if (fp) fclose(fp);
         return 1;
@@ -124,7 +124,7 @@ int main(int argc, char *argv[]) {
     if (rename(tmp_filename, filename) != 0) {
         printf(
             "%s[!] %sFailed to update file: %s%s%s\n",
-            R, N, GG, filename, N
+            color_R, color_N, color_GG, filename, color_N
         );
         remove(tmp_filename);
         return 1;
@@ -132,7 +132,8 @@ int main(int argc, char *argv[]) {
 
     printf(
         "%s[+] %sSet: %s%s %s(%s%s %s= %s%s%s)%s\n",
-        GG, N, GG, filename, DG, CC, key, DG, CC, val, DG, N
+        color_GG, color_N, color_GG, filename, color_DG,
+        color_CC, key, color_DG, color_CC, val, color_DG, color_N
     );
 
     return 0;

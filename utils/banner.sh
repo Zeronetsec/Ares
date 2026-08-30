@@ -2,9 +2,9 @@
 
 function utils::banner() {
     local banner="${__aresroot__}/data/banner.txt"
-    echo -ne "${B}"
+    echo -ne "${color_B}"
     command cat "${banner}"
-    echo -ne "${N}"
+    echo -ne "${color_N}"
     printf '\n'
 }; readonly -f utils::banner
 

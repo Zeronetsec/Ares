@@ -43,15 +43,15 @@ int error_builtin(WORD_LIST *list) {
             sig_str,
             sizeof(sig_str),
             "%s%d%s:%s%s%s",
-            R, sig_num, DG,
-            GG, strsignal(sig_num), N
+            color_R, sig_num, color_DG,
+            color_GG, strsignal(sig_num), color_N
         );
     } else {
         snprintf(
             sig_str,
             sizeof(sig_str),
             "%s0%s:%snone%s",
-            R, DG, GG, N
+            color_R, color_DG, color_GG, color_N
         );
     }
 
@@ -60,36 +60,36 @@ int error_builtin(WORD_LIST *list) {
 
     printf(
         "%sAres Framework Console: %sfatal error%s\n",
-        N, R, N
+        color_N, color_R, color_N
     );
 
     printf(
         "%sAres Framework Console: %ssysexec(%s%s%s)%s::%sproc(%s%d%s)%s::%seuid(%s%d%s)%s::%serror(%s%d%s)%s::%smem(%s%zu%s)%s::%sbuff(%s%zu%s)%s::%saddr(%s%p%s)%s::%sptr(%s%p%s)%s::%ssig(%s) %s-> %s",
-        N,
-        WW, GG, cmd, WW, DG,
-        WW, YY, pid, WW, DG,
-        WW, YY, euid, WW, DG,
-        WW, R, exit_code, WW, DG,
-        WW, CC, mem_len, WW, DG,
-        WW, CC, heap_buff, WW, DG,
-        WW, BB, (void*)&cmd, WW, DG,
-        WW, BB, (void*)cmd, WW, DG,
-        WW, sig_str, DG, N
+        color_N,
+        color_WW, color_GG, cmd, color_WW, color_DG,
+        color_WW, color_YY, pid, color_WW, color_DG,
+        color_WW, color_YY, euid, color_WW, color_DG,
+        color_WW, color_R, exit_code, color_WW, color_DG,
+        color_WW, color_CC, mem_len, color_WW, color_DG,
+        color_WW, color_CC, heap_buff, color_WW, color_DG,
+        color_WW, color_BB, (void*)&cmd, color_WW, color_DG,
+        color_WW, color_BB, (void*)cmd, color_WW, color_DG,
+        color_WW, sig_str, color_DG, color_N
     );
 
     for (size_t i = 0; i < mem_len - 1; i++) {
         printf(
             "%s\\x%02x%s",
-            GG,
+            color_GG,
             (unsigned char)cmd[i],
-            N
+            color_N
         );
     }
     printf("\n");
 
     printf(
         "%sAres Framework Console: %sSegmentation fault%s\n",
-        N, GG, N
+        color_N, color_GG, color_N
     );
 
     return EXECUTION_FAILURE;

@@ -159,7 +159,7 @@ int shmod_builtin(WORD_LIST *list) {
             fprintf(
                 stderr,
                 "%s[!] %sShmod: %s__init__ %snot found!\n",
-                R, N, GG, N
+                color_R, color_N, color_GG, color_N
             );
             return EXECUTION_FAILURE;
         }

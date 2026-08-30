@@ -14,12 +14,12 @@ static inline void missing_argument(
 ) {
     printf(
         "%s[!] %sMissing argument!\n",
-        R, N
+        color_R, color_N
     );
 
     printf(
         "%s[!] %sTry: %saresdoc %s%s%s\n",
-        R, N, GG, CC, tool_name, N
+        color_R, color_N, color_GG, color_CC, tool_name, color_N
     );
 }
 

@@ -29,7 +29,7 @@ int llsi_builtin(WORD_LIST *list) {
         fprintf(
             stderr,
             "%s[!] %sLlsi: variable %s__aresroot__ %snot found!\n",
-            R, N, GG, N
+            color_R, color_N, color_GG, color_N
         );
         return EXECUTION_FAILURE;
     }
@@ -56,7 +56,7 @@ int llsi_builtin(WORD_LIST *list) {
         fprintf(
             stderr,
             "%s[!] %sLlsi: failed to open %s%s%s\n",
-            R, N, GG, init_file, N
+            color_R, color_N, color_GG, init_file, color_N
         );
         return EXECUTION_FAILURE;
     }
@@ -197,9 +197,9 @@ int llsi_builtin(WORD_LIST *list) {
                 } else {
                     printf(
                         "%s[!] %sLlsi: %s%s %sfrom %s%s %sin %s%s %snot found!\n",
-                        R, N, GG, val, N,
-                        CC, current_block, N,
-                        YY, key, N
+                        color_R, color_N, color_GG, val, color_N,
+                        color_CC, current_block, color_N,
+                        color_YY, key, color_N
                     );
                 }
             }

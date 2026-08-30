@@ -64,7 +64,7 @@ void read_file_to_array(const char *filepath, LineArray *arr) {
     if (!fp) {
         printf(
             "%s[!] %sCould not read: %s%s%s\n",
-            R, N, GG, filepath, N
+            color_R, color_N, color_GG, filepath, color_N
         );
         return;
     }
@@ -107,7 +107,7 @@ void process_target_path(
     if (lstat(path, &st) == -1) {
         printf(
             "%s[!] %sPath: %s%s %snot found!\n",
-            R, N, GG, path, N
+            color_R, color_N, color_GG, path, color_N
         );
         return;
     }
@@ -392,7 +392,7 @@ int main(int argc, char *argv[]) {
     if (!out_fp) {
         printf(
             "%s[!] %sCould not open output file: %s%s%s\n",
-            R, N, GG, out_file, N
+            color_R, color_N, color_GG, out_file, color_N
         );
         return 1;
     }
@@ -436,7 +436,7 @@ int main(int argc, char *argv[]) {
 
     printf(
         "%s[+] %sSuccessfully compiled: %s%zu %slines to %s%s%s\n", 
-        GG, N, GG, written, N, GG, out_file, N
+        color_GG, color_N, color_GG, written, color_N, color_GG, out_file, color_N
     );
 
     free_array(&all_lines);

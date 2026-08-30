@@ -1,8 +1,8 @@
 # https://github.com/Zeronetsec/Ares
 
 function utils::missingArgument() {
-    echo -e "${R}[!] ${N}Missing argument!"
-    echo -e "${R}[!] ${N}Try: ${GG}ares --help${N}"
+    echo -e "${color_R}[!] ${color_N}Missing argument!"
+    echo -e "${color_R}[!] ${color_N}Try: ${color_GG}ares --help${color_N}"
     return 1
 }; readonly -f utils::missingArgument
 

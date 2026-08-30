@@ -170,7 +170,8 @@ void process_path(const char *path, Options *opts) {
         if (chmod(path, target_mode) == 0) {
             printf(
                 "%s[+] %sSet mode: %s%04o %s-> %s%s%s\n",
-                GG, N, GG, target_mode, DG, GG, path, N
+                color_GG, color_N, color_GG, target_mode, color_DG,
+                color_GG, path, color_N
             );
         } else {
             perror(path);
@@ -295,7 +296,7 @@ int main(int argc, char *argv[]) {
     if (!parse_modes(mode_raw, &opts)) {
         printf(
             "%s[!] %sInvalid mode syntax: %s%s%s\n",
-            R, N, GG, mode_raw, N
+            color_R, color_N, color_GG, mode_raw, color_N
         );
         return 1;
     }
@@ -307,7 +308,7 @@ int main(int argc, char *argv[]) {
         if (strlen(token) > 0) {
             printf(
                 "%s[*] %sProcessing: %s%s%s\n",
-                B, N, GG, token, N
+                color_B, color_N, color_GG, token, color_N
             );
             process_path(token, &opts);
         }

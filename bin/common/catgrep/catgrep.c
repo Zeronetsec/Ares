@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
     if (!fp) {
         printf(
             "%s[!] %sError opening file: %s%s%s\n",
-            R, N, GG, filename, N
+            color_R, color_N, color_GG, filename, color_N
         );
         return 1;
     }

@@ -34,7 +34,7 @@ int unlink_cb(
         if (rv == 0) {
             printf(
                 "%s[-] %sRemoved directory: %s%s%s\n",
-                YY, N, GG, fpath, N
+                color_YY, color_N, color_GG, fpath, color_N
             );
         }
     } else {
@@ -42,7 +42,7 @@ int unlink_cb(
         if (rv == 0) {
             printf(
                 "%s[-] %sRemoved file: %s%s%s\n",
-                YY, N, GG, fpath, N
+                color_YY, color_N, color_GG, fpath, color_N
             );
         }
     }
@@ -83,7 +83,7 @@ int mkdir_p(const char *path, mode_t mode) {
             if (mkdir(tmp, 0777) == 0) {
                 printf(
                     "%s[+] %sCreated directory: %s%s%s\n",
-                    GG, N, GG, tmp, N
+                    color_GG, color_N, color_GG, tmp, color_N
                 );
             }
             *p = '/';
@@ -93,7 +93,7 @@ int mkdir_p(const char *path, mode_t mode) {
     if (mkdir(tmp, mode) == 0) {
         printf(
             "%s[+] %sCreated directory: %s%s%s\n",
-            GG, N, GG, tmp, N
+            color_GG, color_N, color_GG, tmp, color_N
         );
         return 0;
     } else if (errno == EEXIST) {
@@ -160,7 +160,7 @@ int main(int argc, char *argv[]) {
             if (unlink(target) == 0) {
                 printf(
                     "%s[!] %sRemoved: %s%s%s\n",
-                    R, N, GG, target, N
+                    color_R, color_N, color_GG, target, color_N
                 );
             } else {
                 perror("unlink");
@@ -203,7 +203,7 @@ int main(int argc, char *argv[]) {
             close(fd);
             printf(
                 "%s[+] %sCreated file: %s%s%s\n",
-                GG, N, GG, target, N
+                color_GG, color_N, color_GG, target, color_N
             );
             if (mode_set) {
                 chmod(target, mode);

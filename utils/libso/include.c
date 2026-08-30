@@ -113,7 +113,7 @@ int include_builtin(WORD_LIST *list) {
             ) {
                 printf(
                     "%s[!] %sInclude: %s%s %snot found!\n",
-                    R, N, GG, line, N
+                    color_R, color_N, color_GG, line, color_N
                 );
                 status = EXECUTION_FAILURE;
                 break;
