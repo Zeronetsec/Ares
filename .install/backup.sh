@@ -9,7 +9,6 @@ function install::backup() {
                         ${targetins}
                 " \
                 "Backup: ${color_GG}${opt}/${targetins} ${color_DG}-> ${color_GG}${opt}/${targetins}_${bkdate}.bak.zip${color_N}"
-            cd
         )
     fi
 }; readonly -f install::backup
