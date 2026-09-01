@@ -7,7 +7,7 @@ function install::zinstall() {
         fi
         echo -e " ${color_DG}- ${color_N}exit: ${color_GG}${code}${color_N}"
         return ${code}
-    }; readonly -f __exit__
+    }
 
     local pkg="${1}"
     if [[ -z "${pkg}" ]]; then
