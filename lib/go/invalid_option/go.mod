@@ -1,4 +1,4 @@
-module github.com/Zeronetsec/Ares/utils/go/cnf_handler
+module github.com/Zeronetsec/Ares/lib/go/invalid_option
 
 go 1.27.0
 
