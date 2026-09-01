@@ -1,6 +1,6 @@
 // https://github.com/Zeronetsec/Ares
 
-package shell
+package main
 
 import (
     "os"
@@ -9,7 +9,7 @@ import (
     "os/exec"
 )
 
-func Execute(name string, args ...string) {
+func shell(name string, args ...string) {
     fullCommand := name
     if len(args) > 0 {
         fullCommand = fmt.Sprintf(

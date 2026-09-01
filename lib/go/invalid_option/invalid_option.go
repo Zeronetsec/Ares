@@ -1,13 +1,13 @@
 // https://github.com/Zeronetsec/Ares
 
-package invinput
+package invalid_input
 
 import (
     "fmt"
     "github.com/Zeronetsec/Ares/lib/go/color"
 )
 
-func InvalidOption(args, command string) {
+func Execute(args, command string) {
     fmt.Printf(
         "%s[!] %sInvalid option: %s%s%s\n",
         color.R, color.N, color.GG, args, color.N,

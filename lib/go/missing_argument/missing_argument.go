@@ -1,13 +1,13 @@
 // https://github.com/Zeronetsec/Ares
 
-package invinput
+package missing_argument
 
 import (
     "fmt"
     "github.com/Zeronetsec/Ares/lib/go/color"
 )
 
-func MissingArgument(command string) {
+func Execute(command string) {
     fmt.Printf(
         "%s[!] %sMissing argument!\n",
         color.R, color.N,

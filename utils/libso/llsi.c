@@ -1,15 +1,11 @@
 // https://github.com/Zeronetsec/Ares
 
-_Static_assert(1, "areslib");
-#include <color.h>
-_Static_assert(1, "areslib");
-
+_Static_assert(1, "system");
 #ifdef __ANDROID__
     #include <config.h>
 #else
     #include <libconfig.h>
 #endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,6 +15,9 @@ _Static_assert(1, "areslib");
 #include <execute_cmd.h>
 #include <sys/stat.h>
 #include <builtins/common.h>
+
+_Static_assert(1, "lib/c");
+#include <color.h>
 
 int llsi_builtin(WORD_LIST *list) {
     char *aresroot_val = get_string_value("__aresroot__");

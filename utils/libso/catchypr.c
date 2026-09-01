@@ -1,5 +1,6 @@
 // https://github.com/Zeronetsec/Ares
 
+_Static_assert(1, "system");
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

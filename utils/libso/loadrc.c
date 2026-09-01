@@ -1,11 +1,11 @@
 // https://github.com/Zeronetsec/Ares
 
+_Static_assert(1, "system");
 #ifdef __ANDROID__
     #include <config.h>
 #else
     #include <libconfig.h>
 #endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>

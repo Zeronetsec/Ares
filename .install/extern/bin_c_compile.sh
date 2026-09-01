@@ -27,7 +27,8 @@ function install::extern::binCCompile() {
                                 -O3 -march=native -flto \
                                 -s ${c_file} \
                                 -o ${temp_bin} \
-                                -I${opt}/${targetins}/lib/c
+                                -I${opt}/${targetins}/lib/c \
+                                -I${target_dir}/${dir_path}
                         " \
                         "Compiling: ${color_GG}${tool_name} ${color_DG}(${color_WW}lang: ${color_GG}c${color_DG}, ${color_WW}type: ${color_CC}bin${color_DG})${color_N}"
 

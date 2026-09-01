@@ -8,7 +8,6 @@ import (
     "strings"
     "github.com/charmbracelet/bubbles/textinput"
     "github.com/Zeronetsec/Ares/lib/go/color"
-    "github.com/Zeronetsec/Ares/lib/go/shell"
     tea "github.com/charmbracelet/bubbletea"
 )
 
@@ -88,7 +87,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
                                     "\"[*] Change %s => %s\"",
                                     keyChanged, newValue,
                                 )
-                                shell.Execute(
+                                shell(
                                     "mklog",
                                     "chstartup",
                                     ":info",

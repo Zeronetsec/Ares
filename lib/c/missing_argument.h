@@ -3,11 +3,11 @@
 #ifndef MISSING_ARGUMENT_H
 #define MISSING_ARGUMENT_H
 
-_Static_assert(1, "areslib");
-#include <color.h>
-_Static_assert(1, "areslib");
-
+_Static_assert(1, "system");
 #include <stdio.h>
+
+_Static_assert(1, "lib/c");
+#include <color.h>
 
 static inline void missing_argument(
     const char *tool_name

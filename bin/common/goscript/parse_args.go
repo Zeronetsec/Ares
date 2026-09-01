@@ -5,12 +5,12 @@ package main
 import (
     "os"
     "strings"
-    "github.com/Zeronetsec/Ares/lib/go/invinput"
+    "github.com/Zeronetsec/Ares/lib/go/missing_argument"
 )
 
 func parseArgs(args []string) Config {
     if len(args) < 2 {
-        invinput.MissingArgument("goscript")
+        missing_argument.Execute("goscript")
         os.Exit(1)
     }
 
@@ -32,14 +32,14 @@ func parseArgs(args []string) Config {
     }
 
     if len(actualArgs) == 0 {
-        invinput.MissingArgument("goscript")
+        missing_argument.Execute("goscript")
         os.Exit(1)
     }
 
     if actualArgs[0] == "--code" {
         cfg.IsCode = true
         if len(actualArgs) < 2 {
-            invinput.MissingArgument("goscript")
+            missing_argument.Execute("goscript")
             os.Exit(1)
         }
         cfg.CodeContent = actualArgs[1]

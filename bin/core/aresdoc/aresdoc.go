@@ -8,7 +8,7 @@ import(
     "fmt"
     "path/filepath"
     "github.com/Zeronetsec/Ares/lib/go/color"
-    "github.com/Zeronetsec/Ares/lib/go/invinput"
+    "github.com/Zeronetsec/Ares/lib/go/missing_argument"
 )
 
 func main() {
@@ -17,7 +17,7 @@ func main() {
 
     args := os.Args[1:]
     if len(args) == 0 {
-        invinput.MissingArgument("aresdoc")
+        missing_argument.Execute("aresdoc")
         os.Exit(1)
     }
 
@@ -33,7 +33,7 @@ func main() {
     }
 
     if nameInput == "" {
-        invinput.MissingArgument("aresdoc")
+        missing_argument.Execute("aresdoc")
         os.Exit(1)
     }
 
