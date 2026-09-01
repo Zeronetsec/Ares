@@ -1,4 +1,2 @@
 .devphase/
 .privdat/
-__pycache__/
-*.pyc
