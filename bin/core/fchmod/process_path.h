@@ -7,6 +7,7 @@ _Static_assert(1, "system");
 #include <stdio.h>
 #include <string.h>
 #include <dirent.h>
+#include <errno.h>
 #include <sys/stat.h>
 
 _Static_assert(1, "lib/c");
@@ -23,7 +24,11 @@ static inline void process_path(
 ) {
     struct stat st;
     if (lstat(path, &st) == -1) {
-        perror(path);
+        printf(
+            "%s[!] %sError: %s%s %s(%s%s%s)%s\n",
+            color_R, color_N, color_GG, path, color_DG,
+            color_GG, strerror(errno), color_DG, color_N
+        );
         return;
     }
 
@@ -47,7 +52,11 @@ static inline void process_path(
                 color_GG, path, color_N
             );
         } else {
-            perror(path);
+            printf(
+                "%s[!] %sError: %s%s %s(%s%s%s)%s\n",
+                color_R, color_N, color_GG, path, color_DG,
+                color_GG, strerror(errno), color_DG, color_N
+            );
         }
     }
 
@@ -57,7 +66,11 @@ static inline void process_path(
     ) {
         DIR *dir = opendir(path);
         if (!dir) {
-            perror(path);
+            printf(
+                "%s[!] %sError: %s%s %s(%s%s%s)%s\n",
+                color_R, color_N, color_GG, path, color_DG,
+                color_GG, strerror(errno), color_DG, color_N
+            );
             return;
         }
 

@@ -34,7 +34,9 @@ int main(int argc, char *argv[]) {
     bool mode_set = false;
 
     for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "--mode") == 0) {
+        if (
+            strcmp(argv[i], "--mode") == 0
+        ) {
             if (i + 1 < argc) {
                 mode = strtol(argv[++i], NULL, 8);
                 mode_set = true;
@@ -84,7 +86,10 @@ int main(int argc, char *argv[]) {
                     color_R, color_N, color_GG, target, color_N
                 );
             } else {
-                perror("unlink");
+                printf(
+                    "%s[!] %sError unlink: %s%s%s\n",
+                    color_R, color_N, color_GG, strerror(errno), color_N
+                );
             }
         }
     }
@@ -130,7 +135,10 @@ int main(int argc, char *argv[]) {
                 chmod(target, mode);
             }
         } else {
-            perror("open");
+            printf(
+                "%s[!] %sError open: %s%s%s\n",
+                color_R, color_N, color_GG, strerror(errno), color_N
+            );
         }
     }
 

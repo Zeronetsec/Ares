@@ -1,0 +1,8 @@
+{color.GG}Rmext {color.N}removes file extensions from matching files, with support for recursive directory traversal and extension filtering.
+
+Usage: {color.GG}rmext {color.CC}<path> [--ext <.ext, ...>] [--no-recursive]{color.N}
+
+Example:
+    {color.R}- {color.GG}rmext {color.CC}~/.local/bin/ --ext '.js, .sh, .py, .rb'{color.N}
+    {color.R}- {color.GG}rmext {color.CC}src/ --ext '.tmp'{color.N}
+    {color.R}- {color.GG}rmext {color.CC}mydir/ --ext '.bak' --no-recursive{color.N}

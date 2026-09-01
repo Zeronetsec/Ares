@@ -8,6 +8,7 @@
 _Static_assert(1, "system");
 #include <stdio.h>
 #include <unistd.h>
+#include <errno.h>
 #include <ftw.h>
 #include <sys/stat.h>
 
@@ -42,7 +43,13 @@ static inline int unlink_cb(
         }
     }
     
-    if (rv != 0) perror(fpath);
+    if (rv != 0) {
+        printf(
+            "%s[!] %sError: %s%s %s(%s%s%s)%s\n",
+            color_R, color_N, color_GG, fpath, color_DG,
+            color_GG, strerror(errno), color_DG, color_N
+        );
+    }
     return rv;
 }
 

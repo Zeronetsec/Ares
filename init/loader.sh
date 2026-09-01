@@ -29,6 +29,16 @@ gscache="${PREFIX}/goscript_cache"
 if [[
     "$(
         command getconf "${stconf}" \
+            --key 'remove_binext' \
+            --get 1
+    )" == true
+]]; then
+    command rmext "${__bin__}"
+fi
+
+if [[
+    "$(
+        command getconf "${stconf}" \
             --key 'chmod' \
             --get 1
     )" == true
