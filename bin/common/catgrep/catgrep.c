@@ -1,52 +1,19 @@
 // https://github.com/Zeronetsec/Ares
 
-_Static_assert(1, "areslib");
-#include <color.h>
-#include <missing_argument.h>
-_Static_assert(1, "areslib");
-
+_Static_assert(1, "system");
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
 
-bool match_pattern(const char *str, const char *pattern) {
-    if (!pattern || !str) return false;
+_Static_assert(1, "lib/c");
+#include <color.h>
+#include <missing_argument.h>
 
-    const char *s = str;
-    const char *p = pattern;
-    const char *star_idx = NULL;
-    const char *match = str;
-
-    while (*s) {
-        if (*p == '*') {
-            star_idx = p;
-            match = s;
-            p++;
-        } else if (*p == *s) {
-            s++;
-            p++;
-        } else if (star_idx != NULL) {
-            p = star_idx + 1;
-            match++;
-            s = match;
-        } else {
-            return false;
-        }
-    }
-
-    while (*p == '*') p++;
-    return *p == '\0';
-}
-
-bool is_empty_line(const char *str) {
-    while (*str) {
-        if (!isspace((unsigned char)*str)) return false;
-        str++;
-    }
-    return true;
-}
+_Static_assert(1, "bin/common/catgrep");
+#include <match_pattern.h>
+#include <is_empty_line.h>
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {

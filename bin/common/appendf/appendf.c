@@ -1,179 +1,24 @@
 // https://github.com/Zeronetsec/Ares
 
-_Static_assert(1, "areslib");
-#include <color.h>
-#include <missing_argument.h>
-_Static_assert(1, "areslib");
-
+_Static_assert(1, "system");
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
-#include <dirent.h>
-#include <sys/stat.h>
 
-typedef struct {
-    char **lines;
-    size_t count;
-    size_t capacity;
-} LineArray;
+_Static_assert(1, "lib/c");
+#include <color.h>
+#include <missing_argument.h>
 
-void init_array(LineArray *arr) {
-    arr->capacity = 1024;
-    arr->count = 0;
-    arr->lines = malloc(
-        arr->capacity * sizeof(char *)
-    );
-}
-
-void add_line(LineArray *arr, const char *line) {
-    if (arr->count >= arr->capacity) {
-        arr->capacity *= 2;
-        arr->lines = realloc(
-            arr->lines,
-            arr->capacity * sizeof(char *)
-        );
-    }
-    arr->lines[arr->count++] = strdup(line);
-}
-
-void free_array(LineArray *arr) {
-    for (size_t i = 0; i < arr->count; i++) {
-        free(arr->lines[i]);
-    }
-    free(arr->lines);
-}
-
-void strip_newline(char *str) {
-    size_t len = strlen(str);
-    while (
-        len > 0 &&
-        (
-            str[len - 1] == '\n' ||
-            str[len - 1] == '\r'
-        )
-    ) {
-        str[len - 1] = '\0';
-        len--;
-    }
-}
-
-void read_file_to_array(const char *filepath, LineArray *arr) {
-    FILE *fp = fopen(filepath, "r");
-    if (!fp) {
-        printf(
-            "%s[!] %sCould not read: %s%s%s\n",
-            color_R, color_N, color_GG, filepath, color_N
-        );
-        return;
-    }
-
-    char buffer[4096];
-    while (fgets(buffer, sizeof(buffer), fp)) {
-        strip_newline(buffer);
-        add_line(arr, buffer);
-    }
-
-    fclose(fp);
-}
-
-bool ends_with(const char *str, const char *suffix) {
-    if (!str || !suffix) {
-        return false;
-    }
-
-    size_t len_str = strlen(str);
-    size_t len_suffix = strlen(suffix);
-
-    if (len_suffix > len_str) {
-        return false;
-    }
-
-    return strncmp(
-        str + len_str - len_suffix,
-        suffix,
-        len_suffix
-    ) == 0;
-}
-
-void process_target_path(
-    const char *path,
-    bool recursive,
-    const char *ext,
-    LineArray *arr
-) {
-    struct stat st;
-    if (lstat(path, &st) == -1) {
-        printf(
-            "%s[!] %sPath: %s%s %snot found!\n",
-            color_R, color_N, color_GG, path, color_N
-        );
-        return;
-    }
-
-    if (S_ISREG(st.st_mode)) {
-        if (
-            ext[0] == '\0' ||
-            ends_with(path, ext)
-        ) {
-            read_file_to_array(path, arr);
-        }
-    } else if (S_ISDIR(st.st_mode)) {
-        DIR *dir = opendir(path);
-        if (!dir) return;
-        struct dirent *entry;
-        while ((entry = readdir(dir)) != NULL) {
-            if (
-                strcmp(entry->d_name, ".") == 0 ||
-                strcmp(entry->d_name, "..") == 0
-            ) {
-                continue;
-            }
-
-            char next_path[4096];
-            snprintf(
-                next_path,
-                sizeof(next_path),
-                "%s/%s",
-                path,
-                entry->d_name
-            );
-
-            struct stat child_st;
-            if (lstat(next_path, &child_st) == 0) {
-                if (
-                    S_ISDIR(child_st.st_mode) &&
-                    recursive
-                ) {
-                    process_target_path(
-                        next_path,
-                        recursive,
-                        ext,
-                        arr
-                    );
-                } else if (S_ISREG(child_st.st_mode)) {
-                    if (
-                        ext[0] == '\0' ||
-                        ends_with(next_path, ext)
-                    ) {
-                        read_file_to_array(
-                            next_path,
-                            arr
-                        );
-                    }
-                }
-            }
-        }
-        closedir(dir);
-    }
-}
-
-int cmp_str(const void *a, const void *b) {
-    const char *str_a = *(const char **)a;
-    const char *str_b = *(const char **)b;
-    return strcmp(str_a, str_b);
-}
+_Static_assert(1, "bin/common/appendf");
+#include <line_array.h>
+#include <init_array.h>
+#include <add_line.h>
+#include <free_array.h>
+#include <read_file_to_array.h>
+#include <process_target_path.h>
+#include <cmp_str.h>
 
 int main(int argc, char *argv[]) {
     if (argc < 3) {

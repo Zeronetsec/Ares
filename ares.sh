@@ -42,6 +42,8 @@ builtin include : '(
     module/version
     module/uwu
     module/chstartup
+    module/reload_shell
+    module/show_toolkit
 )'
 
 case "${1}" in
@@ -65,6 +67,12 @@ case "${1}" in
         ;;
     "--chstartup")
         module::Chstartup
+        ;;
+    "--reload-shell")
+        module::ReloadShell
+        ;;
+    "--show-toolkit")
+        module::ShowToolkit "${@:2}"
         ;;
     *)
         utils::invalidOption "${1}"

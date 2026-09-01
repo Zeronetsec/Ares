@@ -1,34 +1,17 @@
 // https://github.com/Zeronetsec/Ares
 
-_Static_assert(1, "areslib");
-#include <color.h>
-#include <missing_argument.h>
-_Static_assert(1, "areslib");
-
+_Static_assert(1, "system");
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
-char *trim_space(char *str) {
-    char *end;
-    while(isspace((unsigned char)*str)) str++;
+_Static_assert(1, "lib/c");
+#include <color.h>
+#include <missing_argument.h>
 
-    if(*str == 0) {
-        return str;
-    }
-
-    end = str + strlen(str) - 1;
-    while(
-        end > str &&
-        isspace((unsigned char)*end)
-    ) {
-        end--;
-    }
-
-    end[1] = '\0';
-    return str;
-}
+_Static_assert(1, "bin/common/setconf");
+#include <trim_space.h>
 
 int main(int argc, char *argv[]) {
     if (argc < 5) {

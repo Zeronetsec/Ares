@@ -1,10 +1,6 @@
 // https://github.com/Zeronetsec/Ares
 
-_Static_assert(1, "areslib");
-#include <color.h>
-#include <missing_argument.h>
-_Static_assert(1, "areslib");
-
+_Static_assert(1, "system");
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,32 +9,12 @@ _Static_assert(1, "areslib");
 #include <sys/stat.h>
 #include <sys/types.h>
 
-void mkdir_p(const char *dir) {
-    char tmp[1024];
-    char *p = NULL;
-    size_t len;
+_Static_assert(1, "lib/c");
+#include <color.h>
+#include <missing_argument.h>
 
-    snprintf(
-        tmp,
-        sizeof(tmp),
-        "%s",
-        dir
-    );
-
-    len = strlen(tmp);
-    if (tmp[len - 1] == '/')
-        tmp[len - 1] = 0;
-
-    for (p = tmp + 1; *p; p++) {
-        if (*p == '/') {
-            *p = 0;
-            mkdir(tmp, 0755);
-            *p = '/';
-        }
-    }
-
-    mkdir(tmp, 0755);
-}
+_Static_assert(1, "bin/core/mklog");
+#include <mkdir_p.h>
 
 int main(int argc, char *argv[]) {
     if (argc < 3) {
