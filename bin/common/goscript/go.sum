@@ -1,0 +1,4 @@
+github.com/Zeronetsec/Ares v0.0.0-20260901171817-39b51423aaac h1:YbivrKhjKcJ4lZLtBXdl31QzCNbqmXlxYwwUx1hn9dk=
+github.com/Zeronetsec/Ares v0.0.0-20260901171817-39b51423aaac/go.mod h1:kKcv3yzm80N5udLMyvxwy+/Tpect1dlUUc2zDFFLJ/U=
+github.com/Zeronetsec/Ares/lib/go/color v0.0.0-20260901171817-39b51423aaac h1:Uv0U0AkudjY9s0NO7Y4DYb5YQcZuokOJi7D/KB1H4fY=
+github.com/Zeronetsec/Ares/lib/go/color v0.0.0-20260901171817-39b51423aaac/go.mod h1:psgTokgYz7ysYvqsKIcVThgDhO/BOvojfqDRJg63ZPo=
