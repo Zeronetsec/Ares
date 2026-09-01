@@ -11,7 +11,6 @@ target_list = [
     project_root / "utils" / "color.sh",
     project_root / "lib" / "c" / "color.h",
     project_root / "lib" / "go" / "color" / "color.go",
-    project_root / "lib" / "python" / "color.py",
     project_root / "config" / "acon" / "acon.syntax",
 ]
 
