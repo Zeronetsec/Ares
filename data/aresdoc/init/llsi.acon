@@ -1,28 +1,34 @@
-{color.GG}LLSI {color.WW}(Loadable Library Shell Initialization) {color.N}is a runtime loading system that exposes registered functions and variables to the global shell environment.
-It provides flexible framework-wide functionality for scripting, but should be used carefully due to its global scope.
+{color.GG}LLSI {color.N}is a system loader within the {color.GG}Ares Framework {color.N}designed to load all registered LLSI modules.
+These modules are loaded last in the startup sequence, which means they can overwrite the users {color.BB}~/.aresrc {color.N}and {color.BB}~/.ares/init/shmod{color.N}.
 
 {color.YY}Warning{color.N}:
-    {color.R}- {color.WW}LLSI modifies the global shell environment.{color.N}
-    {color.R}- {color.WW}Improper use may cause function or variable conflicts.{color.N}
-    {color.R}- {color.WW}Recommended only for framework internals and advanced scripting.{color.N}
-    {color.R}- {color.BB}init/llsi.init {color.WW}does not support comment syntax of any kind.{color.N}
+    {color.R}- {color.N}Environment Overwrite:
+      {color.WW}LLSI modules can overwrite {color.GG}~/.aresrc{color.WW}, {color.GG}~/.ares/init/shmod{color.WW}, and the {color.GG}global shell environment{color.WW}.{color.N}
+    {color.R}- {color.N}Potential Conflicts:
+      {color.WW}Conflicts may occur if an LLSI module attempts to overwrite a function or variable that has been locked ({color.GG}readonly{color.WW}).{color.N}
+    {color.R}- {color.N}No Comments Support:
+      {color.WW}The {color.GG}init/llsi.init {color.WW}file does not support comment syntax of any kind.{color.N}
 
-Example {color.GG}init/llsi.init {color.N}syntax:
-{color.R}your{color.GG}::{color.R}lib{color.GG}::{color.R}name {color.N}{
-    key {color.GG}-> {color.CC}source{color.N}
-    key {color.GG}-> {color.CC}source{color.N}
+Syntax Format ({color.BB}init/llsi.init{color.N}):
+{color.R}your{color.DG}::{color.R}lib{color.DG}::{color.GG}name {color.N}{
+    key {color.GG}-> {color.YY}source{color.N}
+    key {color.GG}-> {color.YY}source{color.N}
 }
 
 Real Example:
-{color.R}your{color.GG}::{color.R}lib{color.GG}::{color.R}name {color.N}{
-    runtime.{color.BB}init {color.GG}-> {color.CC}lib/shell/myinit.init{color.N}
-    runtime.{color.BB}free {color.GG}-> {color.CC}lib/shell/myfree.init{color.N}
+{color.R}your{color.DG}::{color.R}lib{color.DG}::{color.GG}name {color.N}{
+    runtime.{color.BB}init {color.GG}-> {color.YY}lib/shell/myinit.llsi{color.N}
+    runtime.{color.BB}free {color.GG}-> {color.YY}lib/shell/myfree.llsi{color.N}
 }
 
-Ensure the source file includes `{color.PP}readonly {color.GG}-{color.N}f {color.R}yourfunc{color.N}` and `{color.PP}export {color.GG}-{color.N}f {color.R}yourfunc{color.N}`.
-For reliability and security, exported functions should also be marked readonly.
-This prevents accidental or intentional overrides by other sources.
-Without export, functions will not be available for use in scripts.
+Declaration Guidelines:
+{color.N}It is recommended to lock functions and variables ({color.GG}readonly{color.N}) to prevent them from being overwritten.
+Exporting is optional and should be used if you want the functions or variables to be accessible in subshells/scripts, not just the current shell session.
 
-For variables:
-{color.PP}export {color.R}myval{color.GG}={color.N}val; {color.PP}readonly {color.R}myval{color.N}
+For Functions:
+{color.PP}readonly {color.GG}-{color.N}f {color.R}yourfunc{color.N}
+{color.PP}export {color.GG}-{color.N}f {color.R}yourfunc    {color.DG}# Optional: required only if needed in sub-scripts{color.N}
+
+For Variables:
+{color.PP}readonly {color.R}myval{color.GG}={color.N}val
+{color.PP}export {color.R}myval    {color.DG}# Optional: required only if needed in sub-scripts{color.N}

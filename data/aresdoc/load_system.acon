@@ -1,0 +1,25 @@
+The {color.GG}Environment Loader {color.N}in {color.GG}Ares Framework {color.N}manages the execution and setup of shell environments through three core loaders executed sequentially:
+
+{color.RO}1. {color.BB}loadrc{color.N}
+    Loads {color.GG}~/.aresrc{color.N}, or falls back to internal {color.GG}console/ares.rc {color.N}if the users file is empty.
+
+{color.RO}2. {color.BB}shmod{color.N}
+    Recursively loads scripts from {color.GG}~/.ares/init/shmod/{color.N}, or falls back to internal {color.GG}init/shmod/{color.N}.
+    {color.YY}Note{color.N}:
+      {color.WW}shmod prioritizes user files.{color.N}
+      {color.WW}If a user has even one valid module in their folder, shmod will load ONLY that user directory and skip internal modules entirely (no merging).{color.N}
+      {color.WW}If your command-not-found handler breaks, Ctrl+R stops working, or prompt disappears, verify if {color.GG}~/.ares/init/shmod/ {color.N}contains an almost empty script (e.g., just '{color.BB}echo{color.WW}').{color.N}
+
+{color.RO}3. {color.BB}llsi{color.N}
+    Loads modules registered in {color.GG}init/llsi.init{color.N}.
+    Designed for persistent/exported modules.
+    However, functions and variables must be exported manually for maximum flexibility.
+
+{color.YY}Loading Priority & Hierarchy{color.N}:
+{color.GG}LLSI {color.N}holds the highest precedence in the ecosystem.
+If an unlocked function or variable exists in all three loaders, {color.GG}LLSI {color.N}will overwrite previous definitions from {color.BB}loadrc {color.N}and {color.BB}shmod{color.N}.
+
+Tips for {color.BB}shmod{color.N}:
+To add custom modules without losing default Ares configurations, copy the internal modules first before adding your own:
+{color.GG}mkdir {color.CC}-pv ~/.ares/init{color.N}
+{color.GG}cp {color.CC}-rv $__init__/shmod ~/.ares/init/{color.N}
