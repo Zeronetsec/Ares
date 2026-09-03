@@ -1,0 +1,3 @@
+{color.GG}ReloadShell {colot.N}reloads the current shell environment in place, without creating a new shell session.
+
+Usage: {color.GG}init::llsi::reloadshell{color.N}

@@ -1,3 +1,7 @@
+init::llsi {
+    reload.shell -> init/llsi/reload_shell.llsi
+}
+
 lib::shell::libso {
     runtime.init -> lib/shell/libso/init.llsi
     runtime.free -> lib/shell/libso/free.llsi

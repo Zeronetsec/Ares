@@ -1,0 +1,7 @@
+# https://github.com/Zeronetsec/Ares
+
+function init::llsi::reloadshell() {
+    exec ares --shell
+}; readonly -f init::llsi::reloadshell; export -f init::llsi::reloadshell
+
+# Copyright (c) 2026 Zeronetsec
