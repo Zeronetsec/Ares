@@ -73,9 +73,9 @@ if [[
         > /dev/null 2>&1
 fi
 
+builtin llsi
 builtin shmod
 builtin loadrc
-builtin llsi
 
 builtin destroyv : '(
     src
