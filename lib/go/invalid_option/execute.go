@@ -1,6 +1,6 @@
 // https://github.com/Zeronetsec/Ares
 
-package invalid_input
+package invalid_option
 
 import (
     "fmt"
